@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/specialities/best-piles-hospital-in-madhapur/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/specialities/best-piles-hospital-in-madhapur/page.js"
+    ],
+    "/best-doctors-madhapur-hyderabad/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/best-doctors-madhapur-hyderabad/page.js"
+    ],
+    "/about-hospital-madhapur-hyderabad/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about-hospital-madhapur-hyderabad/page.js"
+    ]
+  }
+}
