@@ -3,7 +3,30 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Menu, X, Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { 
+  ChevronDown, 
+  Menu, 
+  X, 
+  Phone, 
+  MapPin, 
+  Clock, 
+  Mail,
+  Heart,
+  Bone,
+  Baby,
+  Brain,
+  Stethoscope,
+  Scissors,
+  Activity,
+  Ear,
+  Zap,
+  Droplets,
+  Dumbbell,
+  Apple,
+  Eye,
+  Lungs,
+  User
+} from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,23 +34,23 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const specialities = [
-    { name: 'Piles', href: '/specialities/best-piles-hospital-in-madhapur' },
-    { name: 'Cardiology', href: '/specialities/cardiology-hospital-madhapur-hyderabad' },
-    { name: 'Critical Care', href: '/specialities/critical-care-hospital-hyderabad' },
-    { name: 'Diabetology', href: '/specialities/diabetes-treatment-hyderabad' },
-    { name: 'ENT', href: '/specialities/ent-specialist-madhapur-hyderabad' },
-    { name: 'General Medicine', href: '/specialities/general-medicine-doctors-hyderabad' },
-    { name: 'General Surgery', href: '/specialities/general-surgery-hospital-hyderabad' },
-    { name: 'Gynecology', href: '/specialities/gynecology-services-madhapur-hyderabad' },
-    { name: 'Laser Proctology', href: '/specialities/laser-proctology-madhapur-hyderabad' },
-    { name: 'Laser Surgery', href: '/specialities/laser-surgery-madhapur-hyderabad' },
-    { name: 'Neuroscience', href: '/specialities/neuroscience-care-madhapur-hyderabad' },
-    { name: 'Nutrition', href: '/specialities/nutrition-and-diet-hyderabad' },
-    { name: 'Orthopedics', href: '/specialities/orthopedic-hospital-hyderabad' },
-    { name: 'Physiotherapy', href: '/specialities/physiotherapy-services-hyderabad' },
-    { name: 'Plastic Surgery', href: '/specialities/plastic-surgery-hospital-hyderabad' },
-    { name: 'Pulmonology', href: '/specialities/pulmonology-specialist-hyderabad' },
-    { name: 'Urology', href: '/specialities/urology-hospital-madhapur-hyderabad' },
+    { name: 'Piles', href: '/specialities/best-piles-hospital-in-madhapur', icon: '/images/home/Piles.png' },
+    { name: 'Cardiology', href: '/specialities/cardiology-hospital-madhapur-hyderabad', icon: '/images/home/Cardiology.png' },
+    { name: 'Critical Care', href: '/specialities/critical-care-hospital-hyderabad', icon: '/images/home/Critical Care.png' },
+    { name: 'Diabetology', href: '/specialities/diabetes-treatment-hyderabad', icon: '/images/home/Diabetology.png' },
+    { name: 'ENT', href: '/specialities/ent-specialist-madhapur-hyderabad', icon: '/images/home/ent.png' },
+    { name: 'General Medicine', href: '/specialities/general-medicine-doctors-hyderabad', icon: '/images/home/General Medicine.png' },
+    { name: 'General Surgery', href: '/specialities/general-surgery-hospital-hyderabad', icon: '/images/home/General Surgery.png' },
+    { name: 'Gynecology', href: '/specialities/gynecology-services-madhapur-hyderabad', icon: '/images/home/gynecology.png' },
+    { name: 'Laser Proctology', href: '/specialities/laser-proctology-madhapur-hyderabad', icon: '/images/home/Laser Proctology.png' },
+    { name: 'Laser Surgery', href: '/specialities/laser-surgery-madhapur-hyderabad', icon: '/images/home/Laser-surgery.png' },
+    { name: 'Neuroscience', href: '/specialities/neuroscience-care-madhapur-hyderabad', icon: '/images/home/Neurosciences.png' },
+    { name: 'Nutrition', href: '/specialities/nutrition-and-diet-hyderabad', icon: '/images/home/Nutrition.png' },
+    { name: 'Orthopedics', href: '/specialities/orthopedic-hospital-hyderabad', icon: '/images/home/Orthopedics.png' },
+    { name: 'Physiotherapy', href: '/specialities/physiotherapy-services-hyderabad', icon: '/images/home/Physiotherapy.png' },
+    { name: 'Plastic Surgery', href: '/specialities/plastic-surgery-hospital-hyderabad', icon: '/images/home/Plastic Surgery.png' },
+    { name: 'Pulmonology', href: '/specialities/pulmonology-specialist-hyderabad', icon: '/images/home/Pulmonology.png' },
+    { name: 'Urology', href: '/specialities/urology-hospital-madhapur-hyderabad', icon: '/images/home/Urology.png' },
   ];
 
   useEffect(() => {
@@ -134,19 +157,30 @@ const Header = () => {
                   <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${isSpecialitiesOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isSpecialitiesOpen && (
-                  <div className="absolute left-0 top-full z-50 mt-2 w-96 rounded-2xl bg-white shadow-large border border-hospital-gray-100 overflow-hidden">
+                  <div className="absolute left-0 top-full z-50 mt-2 w-[480px] rounded-2xl bg-white shadow-large border border-hospital-gray-100 overflow-hidden">
                     <div className="p-6">
-                      <h3 className="text-lg font-bold text-hospital-gray-900 mb-4">Our Specialities</h3>
+                      <h3 className="text-lg font-bold text-hospital-gray-900 mb-4 flex items-center">
+                        <Stethoscope className="w-5 h-5 mr-2 text-hospital-blue" />
+                        Our Specialities
+                      </h3>
                       <div className="grid grid-cols-2 gap-2">
                         {specialities.map((specialty) => (
                           <Link
                             key={specialty.href}
                             href={specialty.href}
-                            className="flex items-center px-4 py-3 text-sm font-medium text-hospital-gray-700 transition-all duration-200 hover:bg-hospital-blue/10 hover:text-hospital-blue rounded-xl group"
+                            className="flex items-center px-3 py-3 text-sm font-medium text-hospital-gray-700 transition-all duration-200 hover:bg-hospital-blue/10 hover:text-hospital-blue rounded-xl group"
                             onClick={() => setIsSpecialitiesOpen(false)}
                           >
-                            <div className="w-2 h-2 bg-hospital-blue rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                            {specialty.name}
+                            <div className="w-8 h-8 mr-3 flex-shrink-0 bg-hospital-blue/5 rounded-lg flex items-center justify-center group-hover:bg-hospital-blue/15 transition-colors duration-200">
+                              <Image
+                                src={specialty.icon}
+                                alt={`${specialty.name} icon`}
+                                width={20}
+                                height={20}
+                                className="object-contain"
+                              />
+                            </div>
+                            <span className="truncate">{specialty.name}</span>
                           </Link>
                         ))}
                       </div>
@@ -246,12 +280,21 @@ const Header = () => {
                         <Link
                           key={specialty.href}
                           href={specialty.href}
-                          className="block rounded px-4 py-2 text-sm text-gray-600 hover:bg-hospital-blue/5 hover:text-hospital-blue transition-colors duration-200"
+                          className="flex items-center rounded px-4 py-2 text-sm text-gray-600 hover:bg-hospital-blue/5 hover:text-hospital-blue transition-colors duration-200"
                           onClick={() => {
                             setIsMenuOpen(false);
                             setIsSpecialitiesOpen(false);
                           }}
                         >
+                          <div className="w-6 h-6 mr-3 flex-shrink-0 bg-hospital-blue/5 rounded-md flex items-center justify-center">
+                            <Image
+                              src={specialty.icon}
+                              alt={`${specialty.name} icon`}
+                              width={16}
+                              height={16}
+                              className="object-contain"
+                            />
+                          </div>
                           {specialty.name}
                         </Link>
                       ))}

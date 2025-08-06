@@ -1,4 +1,5 @@
 {
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
   "/specialities/physiotherapy-services-hyderabad/page": "app/specialities/physiotherapy-services-hyderabad/page.js",
   "/specialities/plastic-surgery-hospital-hyderabad/page": "app/specialities/plastic-surgery-hospital-hyderabad/page.js"

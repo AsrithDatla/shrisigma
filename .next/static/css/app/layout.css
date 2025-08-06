@@ -1327,6 +1327,9 @@ video {
 .w-full {
   width: 100%;
 }
+.w-\[480px\] {
+  width: 480px;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1624,6 +1627,9 @@ video {
 }
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
 }
 .rounded-b-2xl {
   border-bottom-right-radius: 1rem;
@@ -3160,6 +3166,10 @@ m animations for testimonials */
 
 .group:hover .group-hover\:bg-hospital-yellow\/20 {
   background-color: rgb(245 158 11 / 0.2);
+}
+
+.group:hover .group-hover\:bg-hospital-blue\/15 {
+  background-color: rgb(30 64 175 / 0.15);
 }
 
 .group:hover .group-hover\:text-gray-800 {
