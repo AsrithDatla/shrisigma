@@ -1,295 +1,440 @@
-import type { Metadata } from 'next';
+'use client';
+
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Mail, Calendar, Award, Users, Clock } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Best Doctors in Madhapur Hyderabad | Expert Specialists at Shri Sigma Hospitals',
-  description: 'Meet our team of expert doctors and specialists at Shri Sigma Hospitals, Madhapur. Experienced physicians across all medical specialties providing world-class healthcare.',
-  keywords: 'best doctors Madhapur, specialist doctors Hyderabad, expert physicians, medical specialists, experienced doctors, healthcare professionals Madhapur',
-};
+import { Mail, Award, Users, Clock, Search, Filter, Stethoscope, Heart, Phone } from 'lucide-react';
+import { useState } from 'react';
 
 export default function DoctorsPage() {
+  const [selectedSpecialty, setSelectedSpecialty] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
   const doctors = [
     {
-      name: 'Dr. Harish V Kumar',
-      qualification: 'MBBS, MD, DM (Cardiology)',
-      specialty: 'Cardiology',
-      experience: '18+ Years',
-      image: '/images/service/doctor-images/dr- harish-v-kumar .jpg',
-      specialization: 'Interventional Cardiology',
-      expertise: ['Heart Surgery', 'Angioplasty', 'Cardiac Care'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      name: 'Dr. M.M. Shareef',
+      qualification: 'MBBS, MS-ENT, MRCS (UK), DLO',
+      specialty: 'ENT',
+      image: '/images/service/doctor-images/shareef.webp',
+      specialization: 'Sr Consultant-ENT/otorhinolaryngologist',
     },
     {
-      name: 'Dr. Jyotika Waghray',
-      qualification: 'MBBS, MS (Gynecology)',
-      specialty: 'Gynecology',
-      experience: '16+ Years',
-      image: '/images/service/doctor-images/dr-jyotika-waghray .jpg',
-      specialization: 'Obstetrics & Gynecology',
-      expertise: ['Maternity Care', 'Fertility Treatment', 'Women\'s Health'],
-      languages: ['English', 'Hindi', 'Telugu'],
-    },
-    {
-      name: 'Dr. Krishna Kishore Reddy',
-      qualification: 'MBBS, MS (Orthopedics)',
+      name: 'Dr. Sridhar Musthyala',
+      qualification: 'MBBS, Diploma in Orthopedics, FRCS (UK)',
       specialty: 'Orthopedics',
-      experience: '20+ Years',
-      image: '/images/service/doctor-images/dr-krishna-kishore-reddy.jpg',
-      specialization: 'Joint Replacement & Trauma Surgery',
-      expertise: ['Knee Replacement', 'Hip Surgery', 'Sports Medicine'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      image: '/images/service/doctor-images/sridar.webp',
+      specialization: 'Orthopaedics & Trauma',
     },
     {
-      name: 'Dr. Krishna Patil',
-      qualification: 'MBBS, MS (General Surgery)',
-      specialty: 'General Surgery',
-      experience: '18+ Years',
-      image: '/images/service/doctor-images/dr-krishna-patil.jpg',
-      specialization: 'Laser Surgery & Proctology',
-      expertise: ['Piles Treatment', 'Laser Surgery', 'General Surgery'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      name: 'Dr. Srinivas Jakkinaboina',
+      qualification: 'MBBS (Osm), MD (NIMS), DM (CCM), EDIC (UK)',
+      specialty: 'Critical Care',
+      image: '/images/service/doctor-images/doc-srinivas.webp',
+      specialization: 'Critical Care Medicine Specialist',
     },
     {
-      name: 'Dr. Sanjay Paul',
-      qualification: 'MBBS, MS, MCh (Neurosurgery)',
-      specialty: 'Neuroscience',
-      experience: '18+ Years',
-      image: '/images/service/doctor-images/dr-sanjay-paul .jpg',
-      specialization: 'Neurosurgery & Spine Surgery',
-      expertise: ['Brain Surgery', 'Spine Surgery', 'Stroke Treatment'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      name: 'Dr. Bhargava Talluri',
+      qualification: 'MBBS, DNB (Internal Medicine)',
+      specialty: 'Internal Medicine',
+      image: '/images/service/doctor-images/Dr-bhargava.webp',
+      specialization: 'Sr. Consultant - Internal Medicine',
     },
     {
       name: 'Dr. S. Shazia Farhana',
-      qualification: 'MBBS, MS (ENT)',
-      specialty: 'ENT',
-      experience: '14+ Years',
-      image: '/images/service/doctor-images/Dr. S. Shazia Farhana.png',
-      specialization: 'ENT & Head-Neck Surgery',
-      expertise: ['Sinus Surgery', 'Hearing Care', 'Throat Surgery'],
-      languages: ['English', 'Hindi', 'Telugu', 'Urdu'],
-    },
-    {
-      name: 'Dr. Shareef',
-      qualification: 'MBBS, MS (Urology)',
-      specialty: 'Urology',
-      experience: '14+ Years',
-      image: '/images/service/doctor-images/shareef.webp',
-      specialization: 'Endourology & Laparoscopic Surgery',
-      expertise: ['Kidney Stones', 'Prostate Surgery', 'Urological Care'],
-      languages: ['English', 'Hindi', 'Telugu', 'Urdu'],
-    },
-    {
-      name: 'Dr. Sarath Kumar',
-      qualification: 'MBBS, MD (General Medicine)',
+      qualification: 'MBBS, M.D General Medicine, Fellowship in Infectious Diseases',
       specialty: 'General Medicine',
-      experience: '16+ Years',
-      image: '/images/service/doctor-images/dr-sarath-kumar.webp',
-      specialization: 'Internal Medicine & Cardiology',
-      expertise: ['Diabetes Care', 'Hypertension', 'Preventive Care'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      image: '/images/service/doctor-images/Dr. S. Shazia Farhana.png',
+      specialization: 'Sr. Consultant Physician & Diabetologist',
     },
     {
-      name: 'Dr. Bhargava',
-      qualification: 'MBBS, MD (Endocrinology)',
+      name: 'Dr. Sanjay Paul',
+      qualification: 'MBBS, F.Diab, PG Diab, FCCP',
       specialty: 'Diabetology',
-      experience: '15+ Years',
-      image: '/images/service/doctor-images/Dr-bhargava.webp',
-      specialization: 'Diabetology & Endocrinology',
-      expertise: ['Diabetes Management', 'Insulin Therapy', 'Hormone Disorders'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      image: '/images/service/doctor-images/dr-sanjay-paul .jpg',
+      specialization: 'Sr. Consultant Physician & Diabetologist',
     },
     {
-      name: 'Dr. Chakravarthi',
-      qualification: 'MBBS, MS, MCh (Plastic Surgery)',
-      specialty: 'Plastic Surgery',
-      experience: '16+ Years',
-      image: '/images/service/doctor-images/chakravarthi.webp',
-      specialization: 'Plastic & Reconstructive Surgery',
-      expertise: ['Cosmetic Surgery', 'Reconstructive Surgery', 'Aesthetic Procedures'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      name: 'Dr. Harish V Kumar',
+      qualification: 'MS, DNB (Urology)',
+      specialty: 'Urology',
+      image: '/images/service/doctor-images/dr- harish-v-kumar .jpg',
+      specialization: 'Sr. Consultant Urologist, Laparoscopic & Renal Transplant Surgeon',
     },
     {
       name: 'Dr. Naveen Chandra Acharya',
-      qualification: 'MBBS, MS (ENT)',
-      specialty: 'ENT',
-      experience: '12+ Years',
+      qualification: 'MBBS, MS - General Surgery, M.Ch - Urology, MRCS, DNB',
+      specialty: 'Urology',
       image: '/images/service/doctor-images/Dr.Naveen Chandra Acharya.png',
-      specialization: 'Otolaryngology & Endoscopic Surgery',
-      expertise: ['Endoscopic Surgery', 'Voice Disorders', 'Sleep Apnea'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      specialization: 'Sr. Consultant Urologist & Andrologist',
+    },
+    {
+      name: 'Dr. Santhosh Kumar. A',
+      qualification: 'MBBS, DNB (General Surgery), FMAS, DNB (Urology & Andrology)',
+      specialty: 'Urology',
+      image: '/images/service/doctor-images/santosh-kumaR.webp',
+      specialization: 'Urology & Andrology',
+    },
+    {
+      name: 'Dr. Jyotika Waghray',
+      qualification: 'MBBS, MS (Otorhinolaryngology, Head & Neck Surgery & Diploma in Allergy)',
+      specialty: 'ENT',
+      image: '/images/service/doctor-images/dr-jyotika-waghray .jpg',
+      specialization: 'Sr. Consultant - ENT (Otorhinolaryngologist) & Allergy Specialist',
+    },
+    {
+      name: 'Dr. Jahnavi Koneru',
+      qualification: 'MS (Gen) FMAS FISCP',
+      specialty: 'General Surgery',
+      image: '/images/service/doctor-images/jahnavi.webp',
+      specialization: 'Sr. Proctology Surgeon',
+    },
+    {
+      name: 'Dr. Madan Mohan Rao. G.V',
+      qualification: 'MBBS, MS (Orthopedics)',
+      specialty: 'Orthopedics',
+      image: '/images/service/doctor-images/madhan.webp',
+      specialization: 'Orthopedics',
+    },
+    {
+      name: 'Dr. Chakravarthi Avula',
+      qualification: 'MBBS, MS (General Surgery), M.Ch (Neurosurgery)',
+      specialty: 'Neurosurgery',
+      image: '/images/service/doctor-images/chakravarthi.webp',
+      specialization: 'Sr Consultant Neurosurgeon',
+    },
+    {
+      name: 'Dr. K. Balasubramanyam',
+      qualification: 'MBBS, MS (General Surgery), M.Ch (Plastic Surgery)',
+      specialty: 'Plastic Surgery',
+      image: '/images/service/doctor-images/bala.webp',
+      specialization: 'Plastic Surgery',
+    },
+    {
+      name: 'Dr. Krishna Kishore Reddy',
+      qualification: 'MBBS, MD, DNB (Cardiology), FACC',
+      specialty: 'Cardiology',
+      image: '/images/service/doctor-images/dr-krishna-kishore-reddy.jpg',
+      specialization: 'Senior Interventional Cardiologist',
+    },
+    {
+      name: 'Dr. Viswanath',
+      qualification: 'MD, PGDCC, FCCS (USA)',
+      specialty: 'Cardiology',
+      image: '/images/service/doctor-images/dr-viswanath.png',
+      specialization: 'Senior Interventional Cardiologist',
+    },
+    {
+      name: 'Dr. Krishna Patil',
+      qualification: 'MBBS, MD (Nephrology)',
+      specialty: 'Nephrology',
+      image: '/images/service/doctor-images/dr-krishna-patil.jpg',
+      specialization: 'Nephrologist',
     },
     {
       name: 'Dr. Sai Sharanya V',
-      qualification: 'MBBS, MS (Gynecology)',
+      qualification: 'MBBS (Osm), MS OBG (Osm), FIIMA, (MRCOG) Uk',
       specialty: 'Gynecology',
-      experience: '12+ Years',
       image: '/images/service/doctor-images/Dr.Sai Sharanya.V.png',
-      specialization: 'High-Risk Pregnancy & Fertility',
-      expertise: ['High-Risk Pregnancy', 'Fertility Treatment', 'Laparoscopy'],
-      languages: ['English', 'Hindi', 'Telugu'],
+      specialization: 'Sr.Consultant - Obstetrician & Gynaecologist & Infertility Specialist',
+    },
+    {
+      name: 'Dr. Sarath Kumar Reddy A',
+      qualification: 'MBBS, MS (Gen. Surgery), FMAS, MRCS (Edin), FIAGES, FRCS (UK) (ColorectalSurgery), FALS (Robotic Surgery), FALS (Surgical Oncology)',
+      specialty: 'General Surgery',
+      image: '/images/service/doctor-images/dr-sarath-kumar.webp',
+      specialization: 'Sr. Consultant - Colorectal Oncosurgeon Laparoscopic & Robotic Surgeon',
+    },
+    {
+      name: 'Dr. M. Arathi Kameswari',
+      qualification: 'Bachelor Of Physiotherapy (BPT)',
+      specialty: 'Physiotherapy',
+      image: '/images/service/doctor-images/arathi-kumar.png',
+      specialization: 'Consultant Physiotherapist',
+    },
+    {
+      name: 'Ms. Anvitha Kachakayala',
+      qualification: 'M.Sc. Dietetics and Applied Nutrition',
+      specialty: 'Nutrition',
+      image: '/images/service/doctor-images/ms-anvitha.png',
+      specialization: 'Dietician & Nutritionist',
     },
   ];
 
+  // Get unique specialties for filter
+  const specialties = ['All', ...Array.from(new Set(doctors.map(doctor => doctor.specialty)))];
+  
+  // Filter doctors based on search and specialty
+  const filteredDoctors = doctors.filter(doctor => {
+    const matchesSearch = doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSpecialty = selectedSpecialty === 'All' || doctor.specialty === selectedSpecialty;
+    return matchesSearch && matchesSpecialty;
+  });
+
   const stats = [
-    { number: '25+', label: 'Expert Doctors', icon: Users },
-    { number: '15+', label: 'Medical Specialties', icon: Award },
-    { number: '5000+', label: 'Happy Patients', icon: Users },
-    { number: '24/7', label: 'Emergency Care', icon: Clock },
+    { number: '21+', label: 'Expert Doctors', icon: Users, color: 'hospital-blue' },
+    { number: '14+', label: 'Medical Specialties', icon: Award, color: 'hospital-green' },
+    { number: '5000+', label: 'Happy Patients', icon: Heart, color: 'hospital-teal' },
+    { number: '24/7', label: 'Emergency Care', icon: Clock, color: 'hospital-yellow' },
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-hospital-blue to-hospital-green py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-              Meet Our Expert Doctors
+      <Head>
+        <title>Best Doctors in Madhapur Hyderabad | Expert Specialists at Shri Sigma Hospitals</title>
+        <meta name="description" content="Meet our team of expert doctors and specialists at Shri Sigma Hospitals, Madhapur. Experienced physicians across all medical specialties providing world-class healthcare." />
+        <meta name="keywords" content="best doctors Madhapur, specialist doctors Hyderabad, expert physicians, medical specialists, experienced doctors, healthcare professionals Madhapur" />
+      </Head>
+      {/* Modern Hero Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+        
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+              <Stethoscope className="w-5 h-5 mr-2 text-hospital-yellow" />
+              <span className="text-sm font-semibold">Medical Excellence</span>
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
+              <span className="block">Meet Our Expert</span>
+              <span className="block text-hospital-yellow">Medical Team</span>
             </h1>
-            <p className="mx-auto max-w-3xl text-xl">
-              Our team of highly qualified and experienced doctors are committed to 
-              providing the best possible care across all medical specialties
+            
+            <p className="text-xl mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto">
+              Our team of highly qualified specialists are committed to providing 
+              world-class healthcare with compassion and expertise across all medical specialties
             </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search doctors by name or specialty..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-white py-12">
+      {/* Enhanced Stats Section */}
+      <section className="py-16 bg-white -mt-10 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="mb-4 flex justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-hospital-blue/10">
-                      <IconComponent className="h-8 w-8 text-hospital-blue" />
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div key={index} className="text-center group">
+                    <div className="mb-6 flex justify-center">
+                      <div className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-${stat.color}/10 group-hover:bg-${stat.color}/20 group-hover:scale-110 transition-all duration-300`}>
+                        <IconComponent className={`h-10 w-10 text-${stat.color}`} />
+                      </div>
                     </div>
+                    <div className={`text-4xl font-bold font-display text-${stat.color} mb-2 group-hover:scale-110 transition-transform duration-300`}>
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 font-medium">{stat.label}</div>
                   </div>
-                  <div className="text-3xl font-bold text-hospital-blue">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Doctors Grid */}
-      <section className="bg-gray-50 py-16">
+      {/* Specialty Filter Section */}
+      <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-              Our Medical Specialists
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
+              <Filter className="w-5 h-5 mr-2 text-hospital-blue" />
+              <span className="text-sm font-semibold text-hospital-blue">Filter by Specialty</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
+              <span className="block whitespace-nowrap">Our Medical</span>
+              <span className="block text-hospital-green whitespace-nowrap">Specialists</span>
             </h2>
-            <p className="text-lg text-gray-600">
-              Experienced doctors across all specialties providing world-class healthcare
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+              Choose from our wide range of medical specialties to find the right doctor for your healthcare needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {doctors.map((doctor, index) => (
-              <div key={index} className="overflow-hidden rounded-lg bg-white shadow-lg transition-transform hover:scale-105">
-                <div className="relative h-64">
-                  <Image
-                    src={doctor.image}
-                    alt={doctor.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4">
-                    <span className="rounded-full bg-hospital-blue px-3 py-1 text-sm text-white">
-                      {doctor.specialty}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold text-hospital-blue">
-                    {doctor.name}
-                  </h3>
-                  <p className="mb-2 text-hospital-green font-medium">
-                    {doctor.qualification}
-                  </p>
-                  <p className="mb-3 text-sm text-gray-600">
-                    {doctor.specialization}
-                  </p>
-                  <p className="mb-4 text-sm text-gray-500">
-                    Experience: {doctor.experience}
-                  </p>
-                  
-                  <div className="mb-4">
-                    <h4 className="mb-2 text-sm font-semibold text-gray-700">Expertise:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {doctor.expertise.map((skill, skillIndex) => (
-                        <span
-                          key={skillIndex}
-                          className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+          {/* Specialty Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {specialties.map((specialty) => (
+              <button
+                key={specialty}
+                onClick={() => setSelectedSpecialty(specialty)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  selectedSpecialty === specialty
+                    ? 'bg-hospital-blue text-white shadow-lg scale-105'
+                    : 'bg-white text-gray-700 hover:bg-hospital-blue/10 hover:text-hospital-blue border border-gray-200'
+                }`}
+              >
+                {specialty}
+              </button>
+            ))}
+          </div>
+
+          {/* Results Count */}
+          <div className="text-center mb-8">
+            <p className="text-gray-600">
+              Showing <span className="font-bold text-hospital-blue">{filteredDoctors.length}</span> doctors
+              {selectedSpecialty !== 'All' && (
+                <span> in <span className="font-bold text-hospital-green">{selectedSpecialty}</span></span>
+              )}
+            </p>
+          </div>
+
+          {/* Modern Doctors Grid */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredDoctors.map((doctor, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-3xl shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 overflow-hidden h-full">
+                  {/* Doctor Image - Full Header */}
+                  <div className="relative h-80">
+                    <Image
+                      src={doctor.image}
+                      alt={doctor.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    
+                    {/* Specialty Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-hospital-blue/90 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold">
+                        {doctor.specialty}
+                      </span>
+                    </div>
+                    
+
+                    
+                    {/* Doctor Name Overlay */}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold font-display text-white mb-1 group-hover:text-hospital-yellow transition-colors duration-300">
+                        {doctor.name}
+                      </h3>
                     </div>
                   </div>
                   
-                  <div className="mb-4">
-                    <h4 className="mb-2 text-sm font-semibold text-gray-700">Languages:</h4>
-                    <p className="text-sm text-gray-600">{doctor.languages.join(', ')}</p>
-                  </div>
-                  
-                  <div className="flex gap-2">
+                  {/* Doctor Info */}
+                  <div className="p-6">
+                    <p className="text-hospital-green font-semibold mb-3 text-sm">
+                      {doctor.qualification}
+                    </p>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      {doctor.specialization}
+                    </p>
+                    
+                    {/* Contact Button */}
                     <Link
                       href="tel:+918977763308"
-                      className="flex flex-1 items-center justify-center rounded bg-hospital-blue px-3 py-2 text-sm text-white transition-colors hover:bg-hospital-blue/90"
+                      className="w-full bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center group/btn"
                     >
-                      <Phone className="mr-1 h-4 w-4" />
-                      Call
+                      <Phone className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
+                      Consult Now
                     </Link>
-                    <Link
-                      href="#appointment"
-                      className="flex flex-1 items-center justify-center rounded border border-hospital-blue px-3 py-2 text-sm text-hospital-blue transition-colors hover:bg-hospital-blue hover:text-white"
-                    >
-                      <Calendar className="mr-1 h-4 w-4" />
-                      Book
-                    </Link>
+                    
+                    {/* Decorative Element */}
+                    <div className="mt-4 flex justify-center">
+                      <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* No Results Message */}
+          {filteredDoctors.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No doctors found</h3>
+              <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-hospital-blue py-16 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold">
-            Book an Appointment with Our Specialists
-          </h2>
-          <p className="mb-8 text-xl">
-            Get expert medical care from our experienced doctors across all specialties
-          </p>
-          
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="tel:+918977763308"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-hospital-blue transition-colors hover:bg-gray-100"
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              Call: +91 89777 63308
-            </Link>
-            <Link
-              href="/contact-us-madhapur-hyderabad"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-3 text-white transition-colors hover:bg-white hover:text-hospital-blue"
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Us
-            </Link>
+      {/* Enhanced CTA Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+              <Heart className="w-5 h-5 mr-2 text-hospital-yellow" />
+              <span className="text-sm font-semibold">Your Health, Our Priority</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6 heading-no-break">
+              <span className="block whitespace-nowrap">Ready to Consult with</span>
+              <span className="block text-hospital-yellow whitespace-nowrap">Our Specialists?</span>
+            </h2>
+            
+            <p className="text-xl mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto">
+              Get expert medical care from our experienced doctors. Book your consultation today 
+              and take the first step towards better health.
+            </p>
+            
+            <div className="flex flex-col gap-6 sm:flex-row sm:justify-center">
+              <Link
+                href="tel:+918977763308"
+                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-10 py-5 text-hospital-blue font-bold rounded-2xl transition-all duration-300 hover:bg-white hover:scale-105 shadow-2xl"
+              >
+                <Phone className="mr-3 h-6 w-6 group-hover:animate-bounce" />
+                Call: +91 89777 63308
+              </Link>
+              <Link
+                href="/contact-us-madhapur-hyderabad"
+                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-10 py-5 text-white font-bold rounded-2xl transition-all duration-300 hover:bg-white hover:text-hospital-blue shadow-2xl"
+              >
+                <Mail className="mr-3 h-6 w-6" />
+                Contact Us
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+            
+            {/* Trust Indicators */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto mt-16">
+              <div className="text-center">
+                <div className="text-2xl font-bold font-display text-hospital-yellow mb-1">21+</div>
+                <div className="text-sm opacity-90">Expert Doctors</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold font-display text-hospital-yellow mb-1">14+</div>
+                <div className="text-sm opacity-90">Specialties</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold font-display text-hospital-yellow mb-1">4.8★</div>
+                <div className="text-sm opacity-90">Patient Rating</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold font-display text-hospital-yellow mb-1">24/7</div>
+                <div className="text-sm opacity-90">Available</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

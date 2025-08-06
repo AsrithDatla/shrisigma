@@ -99,6 +99,28 @@ const Footer = () => {
                 </Link>
               </p>
             </div>
+            
+            {/* Social Media */}
+            <div className="mt-6">
+              <h4 className="mb-3 text-sm font-semibold">Follow Us</h4>
+              <ul className="social-icons flex space-x-3">
+                <li>
+                  <Link href="https://www.instagram.com/shrisigma_hospitals/" target="_blank" className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-hospital-blue hover:text-white transition-all">
+                    <i className="fa-brands fa-instagram text-sm"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://www.facebook.com/ShriSigmaHospital/" target="_blank" className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-hospital-blue hover:text-white transition-all">
+                    <i className="fa-brands fa-facebook text-sm"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://www.youtube.com/@SigmaHospitals" target="_blank" className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-hospital-blue hover:text-white transition-all">
+                    <i className="fa-brands fa-youtube text-sm"></i>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

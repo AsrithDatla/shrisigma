@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   html {
@@ -10,8 +10,9 @@
   }
   
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
+    color: theme('colors.hospital.gray.700');
   }
 
   /* Prevent horizontal scroll on mobile */
@@ -24,69 +25,97 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme('colors.hospital.gray.100');
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.hospital.blue');
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.hospital.blue-dark');
+  }
+
+  /* Selection styles */
+  ::selection {
+    background-color: theme('colors.hospital.blue');
+    color: white;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid theme('colors.hospital.blue');
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
-  /* Mobile-first responsive containers */
+  /* Enhanced container */
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
 
-  /* Responsive text utilities */
-  .text-responsive-sm {
-    @apply text-sm sm:text-base;
-  }
-  
-  .text-responsive-base {
-    @apply text-base sm:text-lg;
-  }
-  
-  .text-responsive-lg {
-    @apply text-lg sm:text-xl lg:text-2xl;
-  }
-  
-  .text-responsive-xl {
-    @apply text-xl sm:text-2xl lg:text-3xl;
-  }
-  
-  .text-responsive-2xl {
-    @apply text-2xl sm:text-3xl lg:text-4xl;
-  }
-
-  /* Form components */
+  /* Modern form components */
   .form-group {
-    @apply relative mb-4;
+    @apply relative mb-6;
   }
   
   .form-input {
-    @apply w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:border-hospital-blue focus:outline-none focus:ring-2 focus:ring-hospital-blue/20 transition-all;
+    @apply w-full rounded-xl border-2 border-hospital-gray-200 px-4 py-4 text-hospital-gray-900 transition-all duration-200 focus:border-hospital-blue focus:outline-none focus:ring-4 focus:ring-hospital-blue/10;
   }
   
   .form-label {
-    @apply absolute left-4 top-3 text-gray-500 transition-all duration-200 pointer-events-none;
+    @apply absolute left-4 top-4 text-hospital-gray-500 transition-all duration-200 pointer-events-none;
   }
   
   .form-input:focus + .form-label,
   .form-input:not(:placeholder-shown) + .form-label {
-    @apply -top-2 left-3 bg-white px-1 text-xs text-hospital-blue;
+    @apply -top-2 left-3 bg-white px-2 text-xs text-hospital-blue font-semibold;
   }
 
-  /* Button components */
+  /* Enhanced button components */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-hospital-blue px-6 py-3 font-semibold text-white transition-all hover:bg-hospital-blue/90 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-hospital-blue/50;
+    @apply inline-flex items-center justify-center bg-gradient-to-r from-hospital-blue to-hospital-blue-dark px-8 py-4 font-bold text-white rounded-xl transition-all duration-300 hover:shadow-glow hover:scale-105 focus:outline-none focus:ring-4 focus:ring-hospital-blue/20;
   }
   
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border-2 border-hospital-blue px-6 py-3 font-semibold text-hospital-blue transition-all hover:bg-hospital-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-hospital-blue/50;
+    @apply inline-flex items-center justify-center border-2 border-hospital-blue px-8 py-4 font-bold text-hospital-blue rounded-xl transition-all duration-300 hover:bg-hospital-blue hover:text-white hover:scale-105 focus:outline-none focus:ring-4 focus:ring-hospital-blue/20;
   }
 
-  /* Card components */
+  .btn-success {
+    @apply inline-flex items-center justify-center bg-gradient-to-r from-hospital-green to-hospital-green-dark px-8 py-4 font-bold text-white rounded-xl transition-all duration-300 hover:shadow-glow-green hover:scale-105 focus:outline-none focus:ring-4 focus:ring-hospital-green/20;
+  }
+
+  /* Enhanced card components */
   .card {
-    @apply rounded-lg bg-white p-6 shadow-lg transition-all hover:shadow-xl;
+    @apply bg-white rounded-2xl shadow-soft border border-hospital-gray-100 p-6 transition-all duration-300 hover:shadow-medium hover:scale-105;
   }
   
-  .card-hover {
-    @apply transition-transform hover:scale-105;
+  .card-interactive {
+    @apply bg-white rounded-2xl shadow-soft border border-hospital-gray-100 p-6 transition-all duration-300 hover:shadow-large hover:scale-105 cursor-pointer;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-hospital-blue to-hospital-green;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-20;
   }
 
   /* Animation utilities */
@@ -94,24 +123,41 @@
     animation: fadeIn 0.6s ease-out;
   }
   
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
   }
 
-  /* Slider components */
-  .slider {
-    @apply overflow-hidden;
-  }
-  
-  .slide-track {
-    @apply flex animate-scroll;
-  }
-  
-  .slide {
-    @apply flex-shrink-0;
+  .animate-fade-in-down {
+    animation: fadeInDown 0.6s ease-out;
   }
 
-  /* Mobile-specific utilities */
+  .animate-fade-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+
+  /* Loading states */
+  .loading {
+    @apply animate-pulse;
+  }
+
+  /* Responsive utilities */
   .mobile-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
@@ -124,33 +170,86 @@
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Prevent awkward text breaking */
+  .heading-no-break {
+    @apply leading-tight;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .text-no-break {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  /* Mobile-friendly heading styles */
+  .heading-mobile-friendly {
+    @apply leading-tight;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    /* Ensure spans display as blocks on mobile for better line breaks */
+  }
+
+  .heading-mobile-friendly span {
+    @apply block;
+  }
+
+  /* Responsive heading sizes */
+  .heading-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold font-display leading-tight;
+  }
+
+  .heading-section {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold font-display leading-tight;
+  }
+
+  .heading-subsection {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold font-display leading-tight;
+  }
+
+  /* Better line height for headings */
+  .heading-tight {
+    line-height: 1.1;
+  }
+
+  .heading-snug {
+    line-height: 1.25;
+  }
+
+  /* Card content optimization */
+  .card-title {
+    @apply font-bold text-hospital-blue leading-snug;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-excerpt {
+    @apply text-gray-600 leading-relaxed;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
+/* Enhanced animations and utilities */
 .animate-scroll {
-  animation: scroll 20s linear infinite;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2e2670;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #1e1a50;
+  animation: scroll 30s linear infinite;
 }
 
 /* Smooth scroll behavior */
@@ -158,16 +257,315 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles for accessibility */
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid #2e2670;
+/* Enhanced focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid theme('colors.hospital.blue');
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* Loading animation */
+/* Remove default focus styles */
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Enhanced loading states */
+.skeleton {
+  @apply animate-pulse bg-hospital-gray-200 rounded;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-hospital-gray-400;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here */
+}
+
+/* Mobile-Friendly Utilities */
+@layer utilities {
+  /* Text wrapping and breaking utilities */
+  .text-wrap-balance {
+    text-wrap: balance;
+  }
+  
+  .text-wrap-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Line clamping for mobile */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  
+  /* Mobile-friendly heading utilities */
+  .heading-mobile-friendly {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .heading-no-break span {
+    display: block;
+    white-space: nowrap;
+  }
+  
+  /* Touch-friendly button sizes */
+  .btn-touch {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Safe area padding for mobile devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+  
+  /* Mobile-optimized animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-scroll,
+    .animate-bounce,
+    .animate-pulse,
+    .animate-float {
+      animation: none;
+    }
+  }
+  
+  /* Mobile-specific responsive utilities */
+  @media (max-width: 374px) {
+    .text-xs-mobile {
+      font-size: 0.75rem;
+    }
+    
+    .p-xs-mobile {
+      padding: 0.5rem;
+    }
+    
+    .px-xs-mobile {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    
+    .py-xs-mobile {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+  
+  /* Improved focus states for mobile */
+  .focus-mobile:focus {
+    outline: 2px solid theme('colors.hospital.blue');
+    outline-offset: 2px;
+  }
+  
+  /* Mobile-friendly card hover states */
+  @media (hover: hover) {
+    .hover-lift:hover {
+      transform: translateY(-4px);
+    }
+  }
+  
+  /* Mobile-optimized shadows */
+  .shadow-mobile {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shadow-mobile-lg {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Mobile-specific breakpoint utilities */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure images don't overflow on small screens */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Mobile-friendly table styles */
+  table {
+    font-size: 0.875rem;
+  }
+  
+  /* Mobile-optimized form elements */
+  .form-input-mobile {
+    padding: 0.75rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 0.5rem;
+  }
+}
+
+/* Extra small devices optimization */
+@media (max-width: 320px) {
+  .text-xs-only {
+    font-size: 0.75rem;
+  }
+  
+  .p-xs-only {
+    padding: 0.25rem;
+  }
+  
+  .gap-xs-only {
+    gap: 0.25rem;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-mobile-landscape {
+    min-height: 60vh;
+  }
+  
+  .py-mobile-landscape {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}/*
+ Legal Pages Mobile Optimization */
+@media (max-width: 640px) {
+  /* Optimize content cards for mobile */
+  .legal-content-card {
+    @apply rounded-xl shadow-lg p-4 mb-6;
+  }
+  
+  .legal-content-card .icon-container {
+    @apply h-10 w-10 rounded-lg mr-3;
+  }
+  
+  .legal-content-card h2 {
+    @apply text-lg font-bold mb-2;
+  }
+  
+  .legal-content-card h3 {
+    @apply text-base font-bold mb-2;
+  }
+  
+  .legal-content-card p {
+    @apply text-sm leading-relaxed;
+  }
+  
+  /* Optimize definition lists for mobile */
+  .legal-definitions {
+    @apply space-y-2;
+  }
+  
+  .legal-definition-item {
+    @apply bg-gray-50 rounded-lg p-3 border-l-4;
+  }
+  
+  .legal-definition-term {
+    @apply font-bold text-sm mb-1;
+  }
+  
+  .legal-definition-text {
+    @apply text-xs text-gray-600 leading-relaxed;
+  }
+  
+  /* Mobile-friendly navigation */
+  .legal-nav-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .legal-nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Improve readability on all legal pages */
+.legal-page-content {
+  line-height: 1.6;
+}
+
+.legal-page-content h1,
+.legal-page-content h2,
+.legal-page-content h3 {
+  line-height: 1.3;
+}
+
+.legal-page-content p {
+  margin-bottom: 1rem;
+}
+
+.legal-page-content ul,
+.legal-page-content ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.legal-page-content li {
+  margin-bottom: 0.5rem;
+}
+/* Custo
+m animations for testimonials */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -179,6 +577,33 @@ textarea:focus {
   }
 }
 
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Utility classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
 }

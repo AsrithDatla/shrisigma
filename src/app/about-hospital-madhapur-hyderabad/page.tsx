@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Award, Users, Clock, Shield, Heart, Target, Eye } from 'lucide-react';
+import { Award, Users, Clock, Shield, Heart, Target, Eye, CheckCircle, Star, Phone, MapPin, Stethoscope, Activity, UserCheck, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About Shri Sigma Hospitals | Best Multispecialty Hospital in Madhapur Hyderabad',
@@ -10,79 +10,236 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const stats = [
-    { number: '75+', label: 'Bedded Hospital', icon: Users },
-    { number: '25+', label: 'Expert Doctors', icon: Award },
-    { number: '5000+', label: 'Happy Patients', icon: Heart },
-    { number: '24/7', label: 'Emergency Care', icon: Clock },
-  ];
-
-  const values = [
+  const coreValues = [
+    {
+      title: 'Advanced Clinical Treatments',
+      description: 'We provide high-quality healthcare with advanced clinical treatments that are not widely accessible, ensuring patients benefit from the newest medical discoveries.',
+      icon: Activity,
+    },
+    {
+      title: 'Interdisciplinary Approach',
+      description: 'Our medical practitioners work comfortably with specialists in a team-based environment, enabling precise and comprehensive patient care.',
+      icon: Users,
+    },
     {
       title: 'Patient-Centered Care',
-      description: 'We prioritize our patients\' needs and provide personalized care with compassion and respect.',
+      description: 'We develop partnerships with patients and families, providing clinical information and technology needed for informed health decisions.',
       icon: Heart,
-    },
-    {
-      title: 'Medical Excellence',
-      description: 'We maintain the highest standards of medical care with advanced technology and skilled professionals.',
-      icon: Award,
-    },
-    {
-      title: 'Safety & Quality',
-      description: 'We ensure patient safety through rigorous quality measures and best practices in healthcare.',
-      icon: Shield,
-    },
-    {
-      title: 'Continuous Innovation',
-      description: 'We embrace new technologies and treatment methods to provide the best possible outcomes.',
-      icon: Target,
     },
   ];
 
-  const facilities = [
-    'State-of-the-art Operation Theaters',
-    'Advanced ICU and Critical Care Units',
-    'Modern Diagnostic and Imaging Centers',
-    'Fully Equipped Emergency Department',
-    'Comprehensive Laboratory Services',
-    'Pharmacy and Medical Store',
-    'Comfortable Patient Rooms',
-    'Dedicated Parking Facilities',
+  const keyFeatures = [
+    'Leading health services provider in Hyderabad',
+    'Multiple specialists under one roof',
+    'Advanced clinical treatments and technology',
+    'Interdisciplinary team-based approach',
+    'Committed clinical and non-clinical staff',
+    'Partnership-focused patient care',
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-hospital-blue to-hospital-green py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-              About Shri Sigma Hospitals
-            </h1>
-            <p className="mx-auto max-w-3xl text-xl">
-              Leading multispecialty hospital in Madhapur, Hyderabad, committed to 
-              providing world-class healthcare with compassion and excellence
-            </p>
+      {/* Modern Hero Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+
+        <div className="container mx-auto px-4 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in-up">
+              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <Stethoscope className="w-5 h-5 mr-2 text-hospital-yellow" />
+                <span className="text-sm font-semibold">About Our Hospital</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
+                <span className="block">About Shri Sigma</span>
+                <span className="block text-hospital-yellow">Hospitals</span>
+              </h1>
+
+              <p className="text-xl mb-8 opacity-90 leading-relaxed">
+                Shri Sigma Super Speciality Hospital, Madhapur, Hyderabad - Leading multispecialty hospital
+                committed to providing world-class healthcare with compassion, innovation, and excellence.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="#our-story"
+                  className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-8 py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105"
+                >
+                  Learn Our Story
+                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/contact-us-madhapur-hyderabad"
+                  className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue"
+                >
+                  <Phone className="mr-2 h-5 w-5" />
+                  Contact Us
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-white py-12">
+      {/* Our Story Section - Enhanced */}
+      <section id="our-story" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
+                <Star className="w-5 h-5 mr-2 text-hospital-blue" />
+                <span className="text-sm font-semibold text-hospital-blue">Our Journey</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-8 heading-no-break">
+                <span className="whitespace-nowrap">Our Story</span> <span className="whitespace-nowrap">of</span>
+                <span className="block text-hospital-green whitespace-nowrap">Excellence</span>
+              </h2>
+
+              <div className="space-y-6 text-gray-700 leading-relaxed">
+                <p className="text-lg">
+                  Shri Sigma Hospital is one of the leading health services provider in Hyderabad serving high-quality healthcare with advanced clinical treatments that are not widely accessible. The patient always benefits from our unique clinical ability to put in use the newest discoveries and more recent advancements in field of medicine.
+                </p>
+
+                <p>
+                  At Shri Sigma Hospitals each patient would have access to a large number of specialists who could be approached effortlessly under one roof. This speeds up the process of arriving at a diagnosis, because the patient's presenting condition is never isolated.
+                </p>
+
+                <p>
+                  Shri Sigma Hospital is very unique and the only one in the area having medical practitioners who would be always comfortable working with many other specialists in an interdisciplinary, clinical outcome-driven team-based environment. This approach and ease with which we collaborate allows us to empower our medical staff to harness the best outcomes of clinical interaction thus aiding to precise and apt patient care practice.
+                </p>
+
+                <p>
+                  Our clinical and non-clinical staff is committed to consistently providing the highest quality patient experience, which includes developing partnerships with patients and their families and identifying ways to provide patients with clinical information and advanced technology they need to make informed health decisions.
+                </p>
+              </div>
+
+              {/* Key Highlights */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {keyFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-hospital-green rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <Link
+                  href="/best-doctors-madhapur-hyderabad"
+                  className="inline-flex items-center bg-gradient-to-r from-hospital-blue to-hospital-blue-dark px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
+                >
+                  Meet Our Team
+                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative">
+                {/* Main Image */}
+                <div className="relative h-[500px] lg:h-[600px] overflow-hidden rounded-3xl shadow-2xl">
+                  <Image
+                    src="/images/homepage.webp"
+                    alt="Shri Sigma Hospitals - Modern Healthcare Facility"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-hospital-blue/20 to-transparent"></div>
+                </div>
+
+                {/* Floating Patient Satisfaction - Single Badge */}
+                <div className="absolute -top-8 -right-8 bg-hospital-yellow/95 backdrop-blur-lg p-6 rounded-2xl shadow-2xl text-white animate-float" style={{ animationDelay: '1.5s' }}>
+                  <div className="text-center">
+                    <div className="flex justify-center mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                    <div className="text-lg font-bold">4.8/5</div>
+                    <div className="text-xs opacity-90">Patient Rating</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission, Vision, Values - Modern Design */}
+      <section className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
+              <Target className="w-5 h-5 mr-2 text-hospital-blue" />
+              <span className="text-sm font-semibold text-hospital-blue">Our Foundation</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
+              <span className="whitespace-nowrap">Mission, Vision</span> <span className="whitespace-nowrap">& Values</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our core principles guide every decision we make and every service we provide
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {[
+              {
+                title: 'Vision',
+                description: 'To be the most trusted healthcare provider, delivering world-class medical services with compassion and excellence.',
+                icon: Eye,
+                color: 'bg-hospital-blue',
+              },
+              {
+                title: 'Mission',
+                description: 'To provide comprehensive, affordable, and accessible healthcare services while maintaining the highest standards of medical excellence.',
+                icon: Target,
+                color: 'bg-hospital-green',
+              },
+              {
+                title: 'Values',
+                description: 'Compassion, Integrity, Excellence, Innovation, and Respect guide everything we do in our commitment to exceptional patient care.',
+                icon: Heart,
+                color: 'bg-hospital-teal',
+              },
+            ].map((item, index) => {
+              const IconComponent = item.icon;
               return (
-                <div key={index} className="text-center">
-                  <div className="mb-4 flex justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-hospital-blue/10">
-                      <IconComponent className="h-8 w-8 text-hospital-blue" />
+                <div key={index} className="group">
+                  <div className="bg-white rounded-3xl p-8 shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 h-full">
+                    <div className="text-center">
+                      <div className="mb-8 flex justify-center">
+                        <div className={`flex h-24 w-24 items-center justify-center rounded-2xl ${item.color} group-hover:scale-110 transition-transform duration-300 shadow-large`}>
+                          <IconComponent className="h-12 w-12 text-white" />
+                        </div>
+                      </div>
+
+                      <h3 className="mb-6 text-2xl font-bold font-display text-hospital-blue group-hover:text-hospital-green transition-colors duration-300">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-gray-600 leading-relaxed">
+                        {item.description}
+                      </p>
+
+                      {/* Decorative Element */}
+                      <div className="mt-6 flex justify-center">
+                        <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-hospital-blue">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
                 </div>
               );
             })}
@@ -90,124 +247,46 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* About Content */}
-      <section className="py-16">
+      {/* Our Core Values */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="mb-6 text-3xl font-bold text-hospital-blue">
-                Our Story
-              </h2>
-              <p className="mb-6 text-lg text-gray-700">
-                Shri Sigma Hospitals stands as a beacon of healthcare excellence in Madhapur, 
-                Hyderabad. Established with a vision to provide world-class medical care, 
-                we have grown to become one of the most trusted multispecialty hospitals 
-                in the region.
-              </p>
-              <p className="mb-6 text-gray-600">
-                Our journey began with a simple yet powerful mission: to make quality 
-                healthcare accessible to everyone. Today, we serve thousands of patients 
-                with our comprehensive range of medical services, advanced technology, 
-                and a team of highly skilled healthcare professionals.
-              </p>
-              <p className="text-gray-600">
-                We believe that healthcare is not just about treating illness, but about 
-                promoting wellness, preventing disease, and enhancing the quality of life 
-                for our patients and their families.
-              </p>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-hospital-green/10 rounded-full px-4 py-2 mb-6">
+              <Heart className="w-5 h-5 mr-2 text-hospital-green" />
+              <span className="text-sm font-semibold text-hospital-green">What Makes Us Different</span>
             </div>
-            
-            <div className="relative">
-              <div className="relative h-96 overflow-hidden rounded-lg shadow-lg lg:h-full">
-                <Image
-                  src="/images/service/about-side-image.jpg"
-                  alt="Shri Sigma Hospitals - Modern Healthcare Facility"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission, Vision, Values */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            {/* Mission */}
-            <div className="text-center">
-              <div className="mb-6 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-hospital-blue">
-                  <Target className="h-10 w-10 text-white" />
-                </div>
-              </div>
-              <h3 className="mb-4 text-2xl font-bold text-hospital-blue">Our Mission</h3>
-              <p className="text-gray-600">
-                To provide compassionate, high-quality healthcare services that improve 
-                the health and well-being of our patients and communities through 
-                excellence in patient care, education, and innovation.
-              </p>
-            </div>
-
-            {/* Vision */}
-            <div className="text-center">
-              <div className="mb-6 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-hospital-green">
-                  <Eye className="h-10 w-10 text-white" />
-                </div>
-              </div>
-              <h3 className="mb-4 text-2xl font-bold text-hospital-blue">Our Vision</h3>
-              <p className="text-gray-600">
-                To be the leading healthcare provider in the region, recognized for 
-                our commitment to excellence, innovation, and compassionate care, 
-                setting new standards in medical treatment and patient experience.
-              </p>
-            </div>
-
-            {/* Values */}
-            <div className="text-center">
-              <div className="mb-6 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-hospital-yellow">
-                  <Heart className="h-10 w-10 text-white" />
-                </div>
-              </div>
-              <h3 className="mb-4 text-2xl font-bold text-hospital-blue">Our Values</h3>
-              <p className="text-gray-600">
-                Compassion, Integrity, Excellence, Innovation, and Respect guide 
-                everything we do. We are committed to treating every patient with 
-                dignity and providing care that exceeds expectations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-              What Sets Us Apart
+            <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
+              <span className="whitespace-nowrap">Our Core</span> <span className="whitespace-nowrap">Values</span>
             </h2>
-            <p className="text-lg text-gray-600">
-              Our commitment to excellence is reflected in everything we do
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              The principles that guide our commitment to exceptional healthcare delivery
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {values.map((value, index) => {
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {coreValues.map((value, index) => {
               const IconComponent = value.icon;
               return (
-                <div key={index} className="flex items-start rounded-lg bg-white p-6 shadow-lg">
-                  <div className="mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-hospital-blue">
-                    <IconComponent className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-hospital-blue">
+                <div key={index} className="group">
+                  <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 h-full text-center">
+                    <div className="mb-8 flex justify-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-hospital-blue group-hover:bg-hospital-green group-hover:scale-110 transition-all duration-300 shadow-large">
+                        <IconComponent className="h-10 w-10 text-white" />
+                      </div>
+                    </div>
+
+                    <h3 className="mb-6 text-2xl font-bold font-display text-hospital-blue group-hover:text-hospital-green transition-colors duration-300">
                       {value.title}
                     </h3>
-                    <p className="text-gray-600">{value.description}</p>
+
+                    <p className="text-gray-600 leading-relaxed">
+                      {value.description}
+                    </p>
+
+                    {/* Decorative Element */}
+                    <div className="mt-6 flex justify-center">
+                      <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
               );
@@ -216,54 +295,109 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Facilities */}
-      <section className="bg-gray-50 py-16">
+
+
+
+
+
+
+      {/* Modern Facilities Section */}
+      <section className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20">
         <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-              Our Facilities
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-hospital-teal/10 rounded-full px-4 py-2 mb-6">
+              <Shield className="w-5 h-5 mr-2 text-hospital-teal" />
+              <span className="text-sm font-semibold text-hospital-teal">World-Class Infrastructure</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
+              <span className="whitespace-nowrap">Our Advanced</span>
+              <span className="block text-hospital-teal whitespace-nowrap">Facilities</span>
             </h2>
-            <p className="text-lg text-gray-600">
-              Modern infrastructure and advanced medical equipment for comprehensive care
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Modern infrastructure and cutting-edge medical equipment for comprehensive healthcare delivery
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {facilities.map((facility, index) => (
-              <div key={index} className="flex items-center rounded-lg bg-white p-4 shadow">
-                <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-hospital-green">
-                  <Award className="h-4 w-4 text-white" />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              'State-of-the-art Operation Theaters',
+              'Advanced ICU and Critical Care Units',
+              'Modern Diagnostic and Imaging Centers',
+              'Fully Equipped Emergency Department',
+              'Comprehensive Laboratory Services',
+              'NABH Accredited Healthcare Services',
+            ].map((facility, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-2xl p-6 shadow-large hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-hospital-teal to-hospital-green rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-hospital-blue group-hover:text-hospital-teal transition-colors duration-300 leading-tight">
+                        {facility}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Decorative bottom border */}
+                  <div className="mt-4 h-1 bg-gradient-to-r from-hospital-teal to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <span className="text-gray-700">{facility}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-hospital-blue py-16 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold">
-            Experience Excellence in Healthcare
-          </h2>
-          <p className="mb-8 text-xl">
-            Join thousands of satisfied patients who trust us with their health
-          </p>
-          
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/best-doctors-madhapur-hyderabad"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-hospital-blue transition-colors hover:bg-gray-100"
-            >
-              Meet Our Doctors
-            </Link>
-            <Link
-              href="/contact-us-madhapur-hyderabad"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-3 text-white transition-colors hover:bg-white hover:text-hospital-blue"
-            >
-              Contact Us
-            </Link>
+      {/* Modern CTA Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+
+        <div className="container mx-auto px-4 text-center relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+              <Heart className="w-5 h-5 mr-2 text-hospital-yellow" />
+              <span className="text-sm font-semibold">Join Our Healthcare Family</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6 heading-no-break">
+              <span className="whitespace-nowrap">Experience Excellence</span> <span className="whitespace-nowrap">in</span>
+              <span className="block text-hospital-yellow whitespace-nowrap">Healthcare</span>
+            </h2>
+
+            <p className="text-xl mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto">
+              Join thousands of satisfied patients who trust us with their health.
+              Your wellness journey starts with a single step.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/best-doctors-madhapur-hyderabad"
+                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-8 py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105"
+              >
+                <Users className="mr-2 h-5 w-5" />
+                Meet Our Doctors
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+
+              <Link
+                href="/contact-us-madhapur-hyderabad"
+                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Contact Us
+                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

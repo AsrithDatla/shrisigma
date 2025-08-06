@@ -11,20 +11,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/specialities/best-piles-hospital-in-madhapur/page": [
+    "/specialities/physiotherapy-services-hyderabad/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/specialities/best-piles-hospital-in-madhapur/page.js"
+      "static/chunks/app/specialities/physiotherapy-services-hyderabad/page.js"
     ],
-    "/best-doctors-madhapur-hyderabad/page": [
+    "/specialities/plastic-surgery-hospital-hyderabad/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/best-doctors-madhapur-hyderabad/page.js"
-    ],
-    "/about-hospital-madhapur-hyderabad/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about-hospital-madhapur-hyderabad/page.js"
+      "static/chunks/app/specialities/plastic-surgery-hospital-hyderabad/page.js"
     ]
   }
 }

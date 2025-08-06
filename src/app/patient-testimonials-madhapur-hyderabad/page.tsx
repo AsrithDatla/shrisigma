@@ -1,112 +1,65 @@
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Star, Quote, Heart, Award, Users, ThumbsUp } from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-    title: 'Patient Testimonials | Shri Sigma Hospitals Madhapur Hyderabad Reviews',
-    description: 'Read genuine patient testimonials and reviews about Shri Sigma Hospitals, Madhapur. Real experiences from satisfied patients across all medical specialties.',
-    keywords: 'patient testimonials, hospital reviews Madhapur, patient experiences, Shri Sigma Hospitals reviews, healthcare testimonials Hyderabad, patient feedback',
-};
+import Head from 'next/head';
+import Link from 'next/link';
+import { Star, Users, ThumbsUp, Heart, Play, Quote, Award, Stethoscope, Phone, Mail } from 'lucide-react';
 
 export default function TestimonialsPage() {
-    const testimonials = [
+    const videoTestimonials = [
         {
-            name: 'Rajesh Patel',
-            age: 58,
-            treatment: 'Knee Replacement Surgery',
+            department: 'General Medicine',
+            treatmentFor: 'Dengue',
+            treatedBy: 'Dr. Srinivas Jakkinaboina',
+            procedure: 'Severe Dengue',
+            patientLocation: 'Near By',
+            description: 'SHRI SIGMA provides specialized treatment for severe dengue, led by Dr. Srinivas Jakkinaboina, an expert in managing critical fever cases.',
+            videoId: 'TLtAbZvXkj8'
+        },
+        {
+            department: 'Critical Care',
+            treatmentFor: 'Emergency Case',
+            treatedBy: 'Dr. Srinivas Jakkinaboina',
+            procedure: 'Emergency Care',
+            patientLocation: 'Prefer Not to Say',
+            description: 'SHRI SIGMA has a dedicated team of experts led by Dr. Srinivas Jakkinaboina, specializing in handling critical emergency cases with prompt and professional care.',
+            videoId: 'mSv_b3x1uis'
+        },
+        {
             department: 'Orthopedics',
-            doctor: 'Dr. Krishna Kishore Reddy',
-            rating: 5,
-            date: 'March 2024',
-            text: 'I had been suffering from severe knee pain for years. Dr. Krishna Kishore Reddy and his team at Shri Sigma Hospitals performed my knee replacement surgery with exceptional skill. The entire staff was caring and professional. I can now walk without pain and have returned to my normal activities. Highly recommend this hospital for orthopedic treatments.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
+            treatmentFor: 'Accident Case',
+            treatedBy: 'Dr. Madan Mohan V',
+            procedure: 'Accident Recovery',
+            patientLocation: 'Prefer Not to Say',
+            description: 'SHRI SIGMA is equipped with a team of seasoned specialists, including Dr. Madan Mohan V, who is proficient in accident recovery and trauma care.',
+            videoId: 'YSEj4-l2Onc'
         },
         {
-            name: 'Priya Reddy',
-            age: 42,
-            treatment: 'Laser Piles Treatment',
-            department: 'Proctology',
-            doctor: 'Dr. Krishna Patil',
-            rating: 5,
-            date: 'February 2024',
-            text: 'I was suffering from piles for over 3 years and was hesitant about surgery. Dr. Krishna Patil explained the laser treatment procedure thoroughly and made me feel comfortable. The treatment was completely painless, and I recovered within just 2 days. The nursing staff was excellent, and the hospital facilities are world-class. Thank you for giving me my life back!',
-            image: '/images/service/consultent.jpg',
-            verified: true,
+            department: 'General Medicine',
+            treatmentFor: 'Lower Respiratory Problem',
+            treatedBy: 'Dr. Srinivas Jakkinaboina',
+            procedure: 'Lower Respiratory Tract Infections',
+            patientLocation: 'Not Prefer to Say',
+            description: 'SHRI SIGMA has a team of skilled professionals dedicated to treating Lower Respiratory Tract Infections, with expert care provided by Dr. Srinivas Jakkinaboina.',
+            videoId: 'NsUJKxbVsZs'
         },
         {
-            name: 'Suresh Kumar',
-            age: 65,
-            treatment: 'Heart Bypass Surgery',
-            department: 'Cardiology',
-            doctor: 'Dr. Harish V Kumar',
-            rating: 5,
-            date: 'January 2024',
-            text: 'Dr. Harish V Kumar is an exceptional cardiologist. When I was diagnosed with multiple blockages, he explained everything clearly and performed a successful bypass surgery. The cardiac care team monitored me 24/7, and the ICU facilities are outstanding. I am now leading a healthy life thanks to the expert care at Shri Sigma Hospitals.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
+            department: 'General Medicine',
+            treatmentFor: 'Dengue',
+            treatedBy: 'Dr. Srinivas Jakkinaboina',
+            procedure: 'Severe Dengue',
+            patientLocation: 'Warangal',
+            description: 'SHRI SIGMA provides specialized treatment for severe dengue, led by Dr. Srinivas Jakkinaboina, an expert in managing critical fever cases.',
+            videoId: 'BUrhAnQfuvM'
         },
         {
-            name: 'Lakshmi Devi',
-            age: 32,
-            treatment: 'Normal Delivery',
-            department: 'Gynecology',
-            doctor: 'Dr. Jyotika Waghray',
-            rating: 5,
-            date: 'December 2023',
-            text: 'Dr. Jyotika Waghray and her team provided exceptional care throughout my pregnancy and delivery. The maternity ward is well-equipped, and the nursing staff was incredibly supportive. My baby and I received the best possible care. The hospital environment is clean and comfortable. I would definitely recommend Shri Sigma for maternity care.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
-        },
-        {
-            name: 'Ramesh Sharma',
-            age: 48,
-            treatment: 'Brain Tumor Surgery',
-            department: 'Neuroscience',
-            doctor: 'Dr. Sanjay Paul',
-            rating: 5,
-            date: 'November 2023',
-            text: 'When I was diagnosed with a brain tumor, I was terrified. Dr. Sanjay Paul\'s expertise and reassuring manner gave me confidence. The neurosurgery was successful, and the post-operative care was excellent. The entire neuroscience team worked together to ensure my complete recovery. I am grateful to be alive and healthy today.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
-        },
-        {
-            name: 'Anitha Rao',
-            age: 35,
-            treatment: 'Kidney Stone Removal',
-            department: 'Urology',
-            doctor: 'Dr. Shareef',
-            rating: 5,
-            date: 'October 2023',
-            text: 'Dr. Shareef performed laser kidney stone removal for me. The procedure was quick and painless. I was amazed at how advanced the technology is at Shri Sigma Hospitals. The staff was friendly and professional throughout my stay. I was discharged the same day and recovered completely within a week. Excellent experience!',
-            image: '/images/service/consultent.jpg',
-            verified: true,
-        },
-        {
-            name: 'Venkat Reddy',
-            age: 55,
-            treatment: 'Diabetes Management',
-            department: 'Diabetology',
-            doctor: 'Dr. Bhargava',
-            rating: 5,
-            date: 'September 2023',
-            text: 'Dr. Bhargava has been managing my diabetes for the past year. His approach is comprehensive, covering diet, medication, and lifestyle changes. The diabetes care program at Shri Sigma is excellent. Regular monitoring and follow-ups have helped me maintain good blood sugar control. The nutritionist also provided valuable guidance.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
-        },
-        {
-            name: 'Meera Patel',
-            age: 28,
-            treatment: 'Sinus Surgery',
-            department: 'ENT',
-            doctor: 'Dr. S. Shazia Farhana',
-            rating: 5,
-            date: 'August 2023',
-            text: 'I had chronic sinusitis for years. Dr. S. Shazia Farhana performed endoscopic sinus surgery that completely resolved my problem. The procedure was minimally invasive, and recovery was quick. I can now breathe freely and sleep peacefully. The ENT department has excellent facilities and caring staff.',
-            image: '/images/service/consultent.jpg',
-            verified: true,
-        },
+            department: 'OBS & Gynaecology',
+            treatmentFor: 'Ovarian Cysts and Fibroids',
+            treatedBy: 'Dr. Vijaya Laxmi A',
+            procedure: 'Ectopic Pregnancy Surgery',
+            patientLocation: 'KPHB',
+            description: 'SHRI SIGMA has a strong team of seasoned experts who are proficient in Minimal Access Surgery, commonly known as Laparoscopic or Keyhole surgery.',
+            videoId: 'axo8E3176oU'
+        }
     ];
 
     const stats = [
@@ -116,208 +69,278 @@ export default function TestimonialsPage() {
         { number: '5000+', label: 'Happy Patients', icon: Heart },
     ];
 
-    const renderStars = (rating: number) => {
-        return Array.from({ length: 5 }, (_, index) => (
-            <Star
-                key={index}
-                className={`h-4 w-4 ${index < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                    }`}
-            />
-        ));
-    };
-
     return (
         <>
-            {/* Hero Section */}
-            <section className="bg-gradient-to-r from-hospital-blue to-hospital-green py-16 text-white">
-                <div className="container mx-auto px-4">
-                    <div className="text-center">
-                        <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-                            Patient Testimonials
+            <Head>
+                <title>Patient Reviews | Best Multispeciality Hospital in Madhapur</title>
+                <meta name="description" content="Read hospital reviews by patients and watch video testimonials at Shri Sigma, a top multispeciality hospital in Madhapur, Hyderabad. Quality care that makes a difference." />
+                <meta name="keywords" content="Patient Testimonials Shri Sigma Hospitals, Testimonials from happy patients in Madhapur Hyderabad, Shri Sigma Hospitals Reviews Madhapur, Best-rated hospital in Madhapur based on reviews, Patient Feedback in Madhapur Hyderabad, Honest feedback about hospital care in Madhapur, Hospital Reviews in Madhapur, Madhapur hospital patient reviews, Best Hospital with Positive Patient Experiences, Healthcare testimonials near Hitech City, What patients say about Shri Sigma Hospitals Madhapur, Patient stories from Jubilee Hills Hyderabad, Real patient experiences and success stories Hyderabad, Positive reviews for Shri Sigma Hospitals Madhapur" />
+                <link rel="canonical" href="patient-testimonials-madhapur-hyderabad.html" />
+            </Head>
+
+            {/* Modern Hero Section */}
+            <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    }} />
+                </div>
+
+                <div className="container mx-auto px-4 relative">
+                    <div className="text-center max-w-4xl mx-auto">
+                        <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                            <Quote className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                            <span className="text-xs sm:text-sm font-semibold">Patient Stories</span>
+                        </div>
+
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+                            <span className="whitespace-nowrap">Patient</span>
+                            <span className="block text-hospital-yellow whitespace-nowrap">Testimonials</span>
                         </h1>
-                        <p className="mx-auto max-w-3xl text-xl">
-                            Read genuine experiences from our satisfied patients who have received
+
+                        <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
+                            Real experiences from our satisfied patients who have received
                             world-class healthcare at Shri Sigma Hospitals
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="bg-white py-12">
+            {/* Enhanced Stats Section */}
+            <section className="py-8 sm:py-12 lg:py-16 bg-white -mt-6 sm:-mt-10 relative z-10">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-                        {stats.map((stat, index) => {
-                            const IconComponent = stat.icon;
-                            return (
-                                <div key={index} className="text-center">
-                                    <div className="mb-4 flex justify-center">
-                                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-hospital-blue/10">
-                                            <IconComponent className="h-8 w-8 text-hospital-blue" />
+                    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                            {stats.map((stat, index) => {
+                                const IconComponent = stat.icon;
+                                return (
+                                    <div key={index} className="text-center group">
+                                        <div className="mb-3 sm:mb-4 lg:mb-6 flex justify-center">
+                                            <div className="flex h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-hospital-blue/10 group-hover:bg-hospital-blue/20 group-hover:scale-110 transition-all duration-300">
+                                                <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-hospital-blue" />
+                                            </div>
                                         </div>
+                                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-hospital-blue mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
+                                            {stat.number}
+                                        </div>
+                                        <div className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">{stat.label}</div>
                                     </div>
-                                    <div className="text-3xl font-bold text-hospital-blue">{stat.number}</div>
-                                    <div className="text-gray-600">{stat.label}</div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Testimonials Grid */}
-            <section className="bg-gray-50 py-16">
+            {/* Video Testimonials Section */}
+            <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                 <div className="container mx-auto px-4">
-                    <div className="mb-12 text-center">
-                        <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-                            What Our Patients Say
+                    <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+                        <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6">
+                            <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-blue" />
+                            <span className="text-xs sm:text-sm font-semibold text-hospital-blue">Video Stories</span>
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display text-hospital-blue mb-4 sm:mb-6 heading-no-break px-2">
+                            <span className="whitespace-nowrap">Patient Video</span>
+                            <span className="block text-hospital-green whitespace-nowrap">Testimonials</span>
                         </h2>
-                        <p className="text-lg text-gray-600">
-                            Real experiences from real patients across all our medical specialties
+                        <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+                            Watch real patients share their experiences and recovery stories at Shri Sigma Hospitals
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                        {testimonials.map((testimonial, index) => (
-                            <div key={index} className="rounded-lg bg-white p-6 shadow-lg">
-                                <div className="mb-4 flex items-start justify-between">
-                                    <div className="flex items-center">
-                                        <div className="relative mr-4 h-16 w-16 overflow-hidden rounded-full">
-                                            <Image
-                                                src={testimonial.image}
-                                                alt={testimonial.name}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center">
-                                                <h3 className="text-lg font-semibold text-hospital-blue">
-                                                    {testimonial.name}
+                    <div className="space-y-8 sm:space-y-12">
+                        {videoTestimonials.map((testimonial, index) => (
+                            <div key={index} className="group">
+                                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 overflow-hidden">
+                                    <div className="flex flex-col lg:flex-row">
+                                        {/* Content Side */}
+                                        <div className="flex-1 p-6 sm:p-8 lg:p-12">
+                                            <div className="mb-4 sm:mb-6">
+                                                <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-3 sm:px-4 py-2 mb-3 sm:mb-4">
+                                                    <Stethoscope className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-hospital-blue" />
+                                                    <span className="text-xs sm:text-sm font-semibold text-hospital-blue">{testimonial.department}</span>
+                                                </div>
+                                                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold font-display text-hospital-blue mb-3 sm:mb-4 group-hover:text-hospital-green transition-colors duration-300">
+                                                    {testimonial.department} Treatment
                                                 </h3>
-                                                {testimonial.verified && (
-                                                    <Award className="ml-2 h-4 w-4 text-green-500" title="Verified Patient" />
-                                                )}
                                             </div>
-                                            <p className="text-sm text-gray-600">Age: {testimonial.age}</p>
-                                            <div className="flex items-center">
-                                                {renderStars(testimonial.rating)}
-                                                <span className="ml-2 text-sm text-gray-500">{testimonial.date}</span>
+
+                                            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                                                <div className="flex items-start space-x-2 sm:space-x-3">
+                                                    <div className="w-2 h-2 bg-hospital-green rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                                                    <p className="text-sm sm:text-base text-gray-700">
+                                                        <span className="font-semibold text-hospital-blue">Treatment For:</span> {testimonial.treatmentFor}
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-start space-x-2 sm:space-x-3">
+                                                    <div className="w-2 h-2 bg-hospital-green rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                                                    <p className="text-sm sm:text-base text-gray-700">
+                                                        <span className="font-semibold text-hospital-blue">Treated By:</span> {testimonial.treatedBy}
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-start space-x-2 sm:space-x-3">
+                                                    <div className="w-2 h-2 bg-hospital-green rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                                                    <p className="text-sm sm:text-base text-gray-700">
+                                                        <span className="font-semibold text-hospital-blue">Procedure:</span> {testimonial.procedure}
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-start space-x-2 sm:space-x-3">
+                                                    <div className="w-2 h-2 bg-hospital-green rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                                                    <p className="text-sm sm:text-base text-gray-700">
+                                                        <span className="font-semibold text-hospital-blue">Patient Location:</span> {testimonial.patientLocation}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <blockquote className="text-sm sm:text-base text-gray-700 leading-relaxed italic border-l-4 border-hospital-blue pl-3 sm:pl-4">
+                                                "{testimonial.description}"
+                                            </blockquote>
+
+                                            {/* Decorative Element */}
+                                            <div className="mt-4 sm:mt-6 flex justify-start">
+                                                <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            </div>
+                                        </div>
+
+                                        {/* Video Side */}
+                                        <div className="flex-1 lg:max-w-lg">
+                                            <div className="relative h-64 sm:h-80 lg:h-full min-h-[300px] sm:min-h-[400px]">
+                                                <iframe
+                                                    src={`https://www.youtube.com/embed/${testimonial.videoId}?si=RhRwC4RY0gEh3cum`}
+                                                    title="YouTube video player"
+                                                    className="w-full h-full rounded-b-2xl sm:rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    allowFullScreen
+                                                />
+                                                {/* Play Button Overlay */}
+                                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none rounded-b-2xl sm:rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none">
+                                                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                                        <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <Quote className="h-8 w-8 text-hospital-blue/20" />
-                                </div>
-
-                                <div className="mb-4">
-                                    <div className="flex flex-wrap gap-2">
-                                        <span className="rounded-full bg-hospital-blue/10 px-3 py-1 text-sm text-hospital-blue">
-                                            {testimonial.treatment}
-                                        </span>
-                                        <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
-                                            {testimonial.department}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <blockquote className="mb-4 text-gray-700 italic">
-                                    "{testimonial.text}"
-                                </blockquote>
-
-                                <div className="border-t pt-4">
-                                    <p className="text-sm text-gray-600">
-                                        <strong>Treated by:</strong> {testimonial.doctor}
-                                    </p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
+            
 
-            {/* Google Reviews Section */}
-            <section className="py-16">
-                <div className="container mx-auto px-4">
-                    <div className="rounded-lg bg-white p-8 shadow-lg">
-                        <div className="text-center">
-                            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-                                Google Reviews
-                            </h2>
-                            <div className="mb-6 flex justify-center">
-                                <div className="flex items-center">
-                                    {renderStars(5)}
-                                    <span className="ml-2 text-2xl font-bold text-hospital-blue">4.4/5</span>
-                                </div>
-                            </div>
-                            <p className="mb-6 text-lg text-gray-600">
-                                Based on 500+ verified Google reviews from our patients
-                            </p>
+            {/* Share Your Experience */}
+            <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                    }} />
+                </div>
+
+                <div className="container mx-auto px-4 text-center relative">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6">
+                            <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                            <span className="text-xs sm:text-sm font-semibold">Share Your Story</span>
+                        </div>
+
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+                            <span className="whitespace-nowrap">Share Your</span>
+                            <span className="block text-hospital-yellow whitespace-nowrap">Experience</span>
+                        </h2>
+
+                        <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto px-4">
+                            Help others by sharing your experience with Shri Sigma Hospitals.
+                            Your story can inspire and guide others on their healthcare journey.
+                        </p>
+
+                        <div className="flex flex-col gap-4 sm:gap-6 sm:flex-row sm:justify-center px-4">
                             <Link
-                                href="https://www.google.com/search?q=Shri+Sigma+Hospitals+Madhapur+reviews"
+                                href="https://www.google.com/search?q=Shri+Sigma+Hospitals+Madhapur+reviews#lrd=0x0:0x0,3"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center rounded-lg bg-hospital-blue px-8 py-3 text-white transition-colors hover:bg-hospital-blue/90"
+                                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base text-hospital-blue font-bold rounded-lg sm:rounded-xl transition-all duration-300 hover:bg-white hover:scale-105"
                             >
-                                View All Google Reviews
+                                <Star className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:animate-pulse" />
+                                Write a Google Review
+                            </Link>
+                            <Link
+                                href="/contact-us-madhapur-hyderabad"
+                                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base text-white font-bold rounded-lg sm:rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue"
+                            >
+                                <Mail className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5" />
+                                Contact Us
+                                <svg className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
                             </Link>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Share Your Experience */}
-            <section className="bg-hospital-blue py-16 text-white">
+            {/* Enhanced CTA Section */}
+            <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
                 <div className="container mx-auto px-4 text-center">
-                    <h2 className="mb-4 text-3xl font-bold">
-                        Share Your Experience
-                    </h2>
-                    <p className="mb-8 text-xl">
-                        Help others by sharing your experience with Shri Sigma Hospitals
-                    </p>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="inline-flex items-center bg-hospital-teal/10 rounded-full px-4 py-2 mb-6">
+                            <Award className="w-5 h-5 mr-2 text-hospital-teal" />
+                            <span className="text-sm font-semibold text-hospital-teal">Join Our Healthcare Family</span>
+                        </div>
 
-                    <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                        <Link
-                            href="https://www.google.com/search?q=Shri+Sigma+Hospitals+Madhapur+reviews#lrd=0x0:0x0,3"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-hospital-blue transition-colors hover:bg-gray-100"
-                        >
-                            <Star className="mr-2 h-5 w-5" />
-                            Write a Google Review
-                        </Link>
-                        <Link
-                            href="/contact-us-madhapur-hyderabad"
-                            className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-3 text-white transition-colors hover:bg-white hover:text-hospital-blue"
-                        >
-                            Contact Us
-                        </Link>
-                    </div>
-                </div>
-            </section>
+                        <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
+                            <span className="block whitespace-nowrap">Experience World-Class</span>
+                            <span className="block text-hospital-green whitespace-nowrap">Healthcare</span>
+                        </h2>
 
-            {/* CTA Section */}
-            <section className="bg-gray-50 py-16">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-                        Experience World-Class Healthcare
-                    </h2>
-                    <p className="mb-8 text-lg text-gray-600">
-                        Join thousands of satisfied patients who have trusted us with their health
-                    </p>
+                        <p className="text-xl text-gray-600 mb-12 leading-relaxed max-w-2xl mx-auto">
+                            Join thousands of satisfied patients who have trusted us with their health.
+                            Your wellness journey starts with a single step.
+                        </p>
 
-                    <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                        <Link
-                            href="/best-doctors-madhapur-hyderabad"
-                            className="inline-flex items-center justify-center rounded-lg bg-hospital-blue px-8 py-3 text-white transition-colors hover:bg-hospital-blue/90"
-                        >
-                            Meet Our Doctors
-                        </Link>
-                        <Link
-                            href="tel:+918977763308"
-                            className="inline-flex items-center justify-center rounded-lg border-2 border-hospital-blue px-8 py-3 text-hospital-blue transition-colors hover:bg-hospital-blue hover:text-white"
-                        >
-                            Book Appointment
-                        </Link>
+                        <div className="flex flex-col gap-6 sm:flex-row sm:justify-center">
+                            <Link
+                                href="/best-doctors-madhapur-hyderabad"
+                                className="group inline-flex items-center justify-center bg-gradient-to-r from-hospital-blue to-hospital-blue-dark px-10 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-glow hover:scale-105"
+                            >
+                                <Users className="mr-3 h-5 w-5" />
+                                Meet Our Doctors
+                                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
+                            <Link
+                                href="tel:+918977763308"
+                                className="group inline-flex items-center justify-center border-2 border-hospital-blue px-10 py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-hospital-blue hover:text-white hover:scale-105"
+                            >
+                                <Phone className="mr-3 h-5 w-5 group-hover:animate-bounce" />
+                                Book Appointment
+                            </Link>
+                        </div>
+
+                        {/* Trust Indicators */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto mt-16">
+                            <div className="text-center">
+                                <div className="text-2xl font-bold font-display text-hospital-blue mb-1">4.8★</div>
+                                <div className="text-sm text-gray-600">Patient Rating</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-2xl font-bold font-display text-hospital-green mb-1">500+</div>
+                                <div className="text-sm text-gray-600">Reviews</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-2xl font-bold font-display text-hospital-teal mb-1">5000+</div>
+                                <div className="text-sm text-gray-600">Happy Patients</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-2xl font-bold font-display text-hospital-yellow mb-1">24/7</div>
+                                <div className="text-sm text-gray-600">Available</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

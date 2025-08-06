@@ -7,6 +7,7 @@ import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
 import DoctorsSection from '@/components/DoctorsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import FAQSection from '@/components/FAQSection';
 
 export default function HomePage() {
   return (
@@ -36,9 +37,12 @@ export default function HomePage() {
       </div>
 
       {/* Testimonials */}
-      <div className="pb-20 md:pb-0">
+      <div className="pb-4 md:pb-0">
         <TestimonialsSection />
       </div>
+
+      {/* FAQ Section */}
+      <FAQSection />
     </>
   );
 }

@@ -1,6 +1,5 @@
 {
   "/page": "app/page.js",
-  "/best-doctors-madhapur-hyderabad/page": "app/best-doctors-madhapur-hyderabad/page.js",
-  "/specialities/best-piles-hospital-in-madhapur/page": "app/specialities/best-piles-hospital-in-madhapur/page.js",
-  "/about-hospital-madhapur-hyderabad/page": "app/about-hospital-madhapur-hyderabad/page.js"
+  "/specialities/physiotherapy-services-hyderabad/page": "app/specialities/physiotherapy-services-hyderabad/page.js",
+  "/specialities/plastic-surgery-hospital-hyderabad/page": "app/specialities/plastic-surgery-hospital-hyderabad/page.js"
 }

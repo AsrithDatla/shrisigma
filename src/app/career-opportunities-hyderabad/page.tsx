@@ -1,421 +1,397 @@
-import type { Metadata } from 'next';
+'use client';
+
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Briefcase, Users, Award, Heart, Mail, Phone, MapPin, Clock } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Career Opportunities at Shri Sigma Hospitals | Jobs in Healthcare Hyderabad',
-  description: 'Join our team at Shri Sigma Hospitals, Madhapur. Explore career opportunities for doctors, nurses, technicians, and healthcare professionals in Hyderabad.',
-  keywords: 'careers Shri Sigma Hospitals, healthcare jobs Hyderabad, medical jobs Madhapur, hospital careers, nursing jobs, doctor positions, healthcare opportunities',
-};
+import { Mail, Phone, MapPin, Users, Award, Heart, Clock, Send, User, MessageSquare, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function CareersPage() {
-  const benefits = [
-    {
-      title: 'Competitive Compensation',
-      description: 'Attractive salary packages with performance-based incentives and regular appraisals.',
-      icon: Award,
-    },
-    {
-      title: 'Professional Growth',
-      description: 'Continuous learning opportunities, skill development programs, and career advancement.',
-      icon: Briefcase,
-    },
-    {
-      title: 'Work-Life Balance',
-      description: 'Flexible working hours, adequate leave policies, and supportive work environment.',
-      icon: Heart,
-    },
-    {
-      title: 'Team Environment',
-      description: 'Collaborative and inclusive workplace with experienced healthcare professionals.',
-      icon: Users,
-    },
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
 
-  const openPositions = [
-    {
-      title: 'Senior Consultant - Cardiology',
-      department: 'Cardiology',
-      type: 'Full-time',
-      experience: '10+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'We are looking for an experienced cardiologist to join our cardiac care team.',
-      requirements: ['MBBS, MD/DM in Cardiology', '10+ years of experience', 'Valid medical license'],
-    },
-    {
-      title: 'Staff Nurse - ICU',
-      department: 'Critical Care',
-      type: 'Full-time',
-      experience: '3+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'Experienced ICU nurse required for our critical care department.',
-      requirements: ['BSc Nursing or equivalent', '3+ years ICU experience', 'Valid nursing license'],
-    },
-    {
-      title: 'Physiotherapist',
-      department: 'Physiotherapy',
-      type: 'Full-time',
-      experience: '2+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'Join our rehabilitation team to help patients recover and improve their quality of life.',
-      requirements: ['BPT/MPT degree', '2+ years experience', 'Valid physiotherapy license'],
-    },
-    {
-      title: 'Lab Technician',
-      department: 'Laboratory',
-      type: 'Full-time',
-      experience: '1+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'Skilled lab technician required for our diagnostic laboratory.',
-      requirements: ['Diploma in Medical Lab Technology', '1+ years experience', 'Knowledge of lab equipment'],
-    },
-    {
-      title: 'Pharmacist',
-      department: 'Pharmacy',
-      type: 'Full-time',
-      experience: '2+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'Licensed pharmacist needed for our hospital pharmacy operations.',
-      requirements: ['B.Pharm/D.Pharm degree', '2+ years experience', 'Valid pharmacy license'],
-    },
-    {
-      title: 'Administrative Assistant',
-      department: 'Administration',
-      type: 'Full-time',
-      experience: '1+ Years',
-      location: 'Madhapur, Hyderabad',
-      description: 'Support our administrative operations and patient services.',
-      requirements: ['Graduate degree', '1+ years admin experience', 'Good communication skills'],
-    },
-  ];
+  const [modalImage, setModalImage] = useState<{
+    src: string;
+    alt: string;
+    title: string;
+  } | null>(null);
 
-  const departments = [
-    'Cardiology', 'Orthopedics', 'Gynecology', 'Neuroscience',
-    'Urology', 'ENT', 'General Medicine', 'General Surgery',
-    'Critical Care', 'Emergency Medicine', 'Radiology', 'Laboratory',
-    'Pharmacy', 'Physiotherapy', 'Nursing', 'Administration'
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create FormData object to match the live website format
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('message', formData.message);
+
+    try {
+      const response = await fetch('https://shrisigmahospitals.com/inc/career_form', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+      
+      if (response.ok) {
+        // Reset form on success
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          message: ''
+        });
+        alert('Thank you! Your application has been submitted successfully. We will contact you soon.');
+      } else {
+        alert('There was an error submitting your application. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting your application. Please try again.');
+    }
+  };
+
+  const stats = [
+    { number: '21+', label: 'Expert Doctors', icon: Users, color: 'hospital-blue' },
+    { number: '14+', label: 'Medical Specialties', icon: Award, color: 'hospital-green' },
+    { number: '5000+', label: 'Happy Patients', icon: Heart, color: 'hospital-teal' },
+    { number: '24/7', label: 'Emergency Care', icon: Clock, color: 'hospital-yellow' },
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-hospital-blue to-hospital-green py-16 text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div className="flex flex-col justify-center">
-              <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-                Join Our Healthcare Team
-              </h1>
-              <p className="mb-6 text-xl">
-                Build a rewarding career in healthcare with Shri Sigma Hospitals. 
-                Make a difference in people's lives while growing professionally.
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="#positions"
-                  className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-hospital-blue transition-colors hover:bg-gray-100"
-                >
-                  View Open Positions
-                </Link>
-                <Link
-                  href="#apply"
-                  className="inline-flex items-center justify-center rounded-lg border-2 border-white px-6 py-3 text-white transition-colors hover:bg-white hover:text-hospital-blue"
-                >
-                  Apply Now
-                </Link>
-              </div>
+      <Head>
+        <title>Medical Job Openings in Madhapur Hyderabad | Careers at Shri Sigma Hospitals</title>
+        <meta name="description" content="Begin your journey with Shri Sigma Hospitals. Explore current job openings in Hyderabad's leading multispeciality hospital in Madhapur." />
+        <meta name="keywords" content="Medical Job Openings in Madhapur, Healthcare Jobs in Madhapur Hyderabad, Hospital Job Vacancies in Madhapur, Support Staff Jobs in Healthcare Madhapur, Careers in Healthcare Madhapur Hyderabad" />
+      </Head>
+
+      {/* Modern Hero Section - Mobile Optimized */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+              <span className="text-xs sm:text-sm font-semibold">Join Our Team</span>
             </div>
-            
-            <div className="relative">
-              <div className="relative h-96 overflow-hidden rounded-lg shadow-xl lg:h-full">
-                <Image
-                  src="/images/hiring1.webp"
-                  alt="Healthcare Careers at Shri Sigma Hospitals"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+              <span className="block">Build Your Career in</span>
+              <span className="block text-hospital-yellow">Healthcare Excellence</span>
+            </h1>
+
+            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
+              Join Shri Sigma Hospitals and be part of a team dedicated to providing world-class healthcare.
+              Discover exciting career opportunities in Hyderabad's leading multispecialty hospital.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Why Join Us */}
-      <section className="py-16">
+      {/* Enhanced Stats Section - Mobile Optimized */}
+      <section className="py-8 sm:py-12 lg:py-16 bg-white -mt-6 sm:-mt-10 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-              Why Choose Shri Sigma Hospitals?
-            </h2>
-            <p className="text-lg text-gray-600">
-              Join a team that values excellence, compassion, and professional growth
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {benefits.map((benefit, index) => {
-              const IconComponent = benefit.icon;
-              return (
-                <div key={index} className="flex items-start rounded-lg bg-white p-6 shadow-lg">
-                  <div className="mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-hospital-blue">
-                    <IconComponent className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-hospital-blue">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600">{benefit.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Positions */}
-      <section id="positions" className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-              Current Openings
-            </h2>
-            <p className="text-lg text-gray-600">
-              Explore exciting career opportunities across various departments
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {openPositions.map((position, index) => (
-              <div key={index} className="rounded-lg bg-white p-6 shadow-lg">
-                <div className="mb-4 flex items-start justify-between">
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-hospital-blue">
-                      {position.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2 text-sm text-gray-600">
-                      <span className="rounded bg-hospital-blue/10 px-2 py-1">
-                        {position.department}
-                      </span>
-                      <span className="rounded bg-green-100 px-2 py-1">
-                        {position.type}
-                      </span>
-                      <span className="rounded bg-yellow-100 px-2 py-1">
-                        {position.experience}
-                      </span>
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div key={index} className="text-center group">
+                    <div className="mb-3 sm:mb-4 lg:mb-6 flex justify-center">
+                      <div className={`flex h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-${stat.color}/10 group-hover:bg-${stat.color}/20 group-hover:scale-110 transition-all duration-300`}>
+                        <IconComponent className={`h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-${stat.color}`} />
+                      </div>
                     </div>
+                    <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-${stat.color} mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300`}>
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">{stat.label}</div>
                   </div>
-                </div>
-                
-                <p className="mb-4 text-gray-700">{position.description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="mb-2 font-semibold text-gray-800">Requirements:</h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    {position.requirements.map((req, reqIndex) => (
-                      <li key={reqIndex} className="flex items-start">
-                        <span className="mr-2 text-hospital-blue">•</span>
-                        {req}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-gray-500">
-                    <MapPin className="mr-1 h-4 w-4" />
-                    {position.location}
-                  </div>
-                  <Link
-                    href="#apply"
-                    className="rounded bg-hospital-blue px-4 py-2 text-sm text-white transition-colors hover:bg-hospital-blue/90"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Application Form */}
-      <section id="apply" className="py-16">
+      {/* Current Openings Section */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-8 text-center">
-              <h2 className="mb-4 text-3xl font-bold text-hospital-blue">
-                Apply for a Position
-              </h2>
-              <p className="text-lg text-gray-600">
-                Submit your application and join our healthcare team
-              </p>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-blue" />
+              <span className="text-xs sm:text-sm font-semibold text-hospital-blue">Current Opportunities</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-hospital-blue mb-4 sm:mb-6 heading-no-break px-4">
+              <span className="whitespace-nowrap">Current</span>
+              <span className="block text-hospital-green whitespace-nowrap">Openings</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+              Explore exciting career opportunities across various departments and specialties at Shri Sigma Hospitals
+            </p>
+          </div>
+
+          {/* Job Opening Images - Full Display */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {/* Healthcare Professionals Image */}
+            <div className="group">
+              <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative h-80 sm:h-96 lg:h-[500px] xl:h-[600px]">
+                  <Image
+                    src="/images/hiring1.webp"
+                    alt="Healthcare Job Opportunities - Doctors and Nurses"
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
 
-            <form className="rounded-lg bg-white p-8 shadow-lg">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                  <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-gray-700">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="lastName" className="mb-2 block text-sm font-medium text-gray-700">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
+            {/* Support Staff Image */}
+            <div className="group">
+              <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative h-80 sm:h-96 lg:h-[500px] xl:h-[600px]">
+                  <Image
+                    src="/images/hiring2.webp"
+                    alt="Support Staff Opportunities - Administrative and Support Roles"
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                    priority
                   />
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="phone" className="mb-2 block text-sm font-medium text-gray-700">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                  <label htmlFor="position" className="mb-2 block text-sm font-medium text-gray-700">
-                    Position Applied For *
-                  </label>
-                  <select
-                    id="position"
-                    name="position"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  >
-                    <option value="">Select Position</option>
-                    {openPositions.map((pos, index) => (
-                      <option key={index} value={pos.title}>{pos.title}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div>
-                  <label htmlFor="experience" className="mb-2 block text-sm font-medium text-gray-700">
-                    Years of Experience *
-                  </label>
-                  <select
-                    id="experience"
-                    name="experience"
-                    required
-                    className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  >
-                    <option value="">Select Experience</option>
-                    <option value="0-1">0-1 Years</option>
-                    <option value="1-3">1-3 Years</option>
-                    <option value="3-5">3-5 Years</option>
-                    <option value="5-10">5-10 Years</option>
-                    <option value="10+">10+ Years</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label htmlFor="resume" className="mb-2 block text-sm font-medium text-gray-700">
-                  Upload Resume *
-                </label>
-                <input
-                  type="file"
-                  id="resume"
-                  name="resume"
-                  accept=".pdf,.doc,.docx"
-                  required
-                  className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  Accepted formats: PDF, DOC, DOCX (Max size: 5MB)
+      {/* Contact & Application Section - Mobile Optimized */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+            {/* Contact Information */}
+            <div className="space-y-6 sm:space-y-8">
+              <div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-hospital-blue mb-4 sm:mb-6">
+                  Get In Touch With Us
+                </h2>
+                <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
+                  Ready to start your healthcare career journey? Contact us today to learn more about available positions and application process.
                 </p>
               </div>
 
-              <div className="mt-6">
-                <label htmlFor="coverLetter" className="mb-2 block text-sm font-medium text-gray-700">
-                  Cover Letter
-                </label>
-                <textarea
-                  id="coverLetter"
-                  name="coverLetter"
-                  rows={4}
-                  className="w-full rounded border border-gray-300 px-3 py-2 focus:border-hospital-blue focus:outline-none"
-                  placeholder="Tell us why you want to join our team..."
-                ></textarea>
+              {/* Contact Details */}
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-3 sm:space-x-4 group">
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-hospital-blue/10 group-hover:bg-hospital-blue/20 transition-colors duration-300 flex-shrink-0">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-hospital-blue" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Address</h4>
+                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                      <Link
+                        href="https://www.google.com/maps/place/Shri+Sigma+Hospitals+-+Best+Multispecialty+Hospital+in+Madhapur%7C+Hyderabad/@17.444966,78.385436,10z/data=!4m6!3m5!1s0x3bcb91b91ac485fd:0x1ae13362e0a6ead8!8m2!3d17.4449657!4d78.3854362!16s%2Fg%2F11j0_crrr6?hl=en-US&entry=ttu"
+                        target="_blank"
+                        className="hover:text-hospital-blue transition-colors duration-300"
+                      >
+                        beside karachi bakery Madhapur,<br />
+                        HUDA Techno Enclave, HITEC City,<br />
+                        Hyderabad, Telangana-500081
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 sm:space-x-4 group">
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-hospital-green/10 group-hover:bg-hospital-green/20 transition-colors duration-300 flex-shrink-0">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-hospital-green" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Phone</h4>
+                    <div className="space-y-1">
+                      <p>
+                        <Link
+                          href="tel:+918858234345"
+                          className="text-gray-600 hover:text-hospital-green transition-colors duration-300 text-sm sm:text-base"
+                        >
+                          +91 88582 34345
+                        </Link>
+                      </p>
+                      <p>
+                        <Link
+                          href="tel:+918977763308"
+                          className="text-gray-600 hover:text-hospital-green transition-colors duration-300 text-sm sm:text-base"
+                        >
+                          +91 89777 63308
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 sm:space-x-4 group">
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-hospital-teal/10 group-hover:bg-hospital-teal/20 transition-colors duration-300 flex-shrink-0">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-hospital-teal" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">E-Mail</h4>
+                    <p>
+                      <Link
+                        href="mailto:info@shrisigmahospitals.com"
+                        className="text-gray-600 hover:text-hospital-teal transition-colors duration-300 text-sm sm:text-base break-all"
+                      >
+                        info@shrisigmahospitals.com
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-large">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-hospital-blue mb-2">
+                  Request a Callback
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  Fill out the form below and we'll get back to you within 24 hours
+                </p>
               </div>
 
-              <div className="mt-8">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-hospital-blue/20 focus:border-hospital-blue transition-all duration-300 text-sm sm:text-base"
+                    placeholder="Your Name"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    pattern="[0-9]{10}"
+                    required
+                    className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-hospital-blue/20 focus:border-hospital-blue transition-all duration-300 text-sm sm:text-base"
+                    placeholder="Phone Number"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-hospital-blue/20 focus:border-hospital-blue transition-all duration-300 text-sm sm:text-base"
+                    placeholder="Email Address"
+                  />
+                </div>
+
+                <div className="relative">
+                  <MessageSquare className="absolute left-3 top-4 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={4}
+                    className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-hospital-blue/20 focus:border-hospital-blue transition-all duration-300 resize-none text-sm sm:text-base"
+                    placeholder="Tell us about your interest and experience..."
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-hospital-blue px-6 py-3 text-white transition-colors hover:bg-hospital-blue/90"
+                  className="w-full bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white py-3 sm:py-4 px-6 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center group text-sm sm:text-base"
                 >
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
                   Submit Application
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact HR */}
-      <section className="bg-hospital-blue py-12 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold">
-            Have Questions About Careers?
-          </h2>
-          <p className="mb-6 text-xl">
-            Contact our HR department for more information about career opportunities
-          </p>
-          
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="mailto:hr@shrisigmahospitals.com"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-hospital-blue transition-colors hover:bg-gray-100"
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              hr@shrisigmahospitals.com
-            </Link>
-            <Link
-              href="tel:+918977763308"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-3 text-white transition-colors hover:bg-white hover:text-hospital-blue"
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              +91 89777 63308
-            </Link>
+      {/* Enhanced CTA Section - Mobile Optimized */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }} />
+        </div>
+
+        <div className="container mx-auto px-4 text-center relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6">
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+              <span className="text-xs sm:text-sm font-semibold">Join Our Mission</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+              <span className="whitespace-nowrap">Ready to</span> <span className="whitespace-nowrap">Make a</span>
+              <span className="block text-hospital-yellow whitespace-nowrap">Difference?</span>
+            </h2>
+
+            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto px-4">
+              Join Shri Sigma Hospitals and be part of a team that's transforming healthcare in Hyderabad.
+              Your career in healthcare excellence starts here.
+            </p>
+
+            <div className="flex flex-col gap-4 sm:gap-6 sm:flex-row sm:justify-center px-4">
+              <Link
+                href="tel:+918977763308"
+                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-6 sm:px-10 py-4 sm:py-5 text-hospital-blue font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:scale-105 shadow-2xl text-sm sm:text-base"
+              >
+                <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce" />
+                Call: +91 89777 63308
+              </Link>
+              <Link
+                href="mailto:info@shrisigmahospitals.com"
+                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-10 py-4 sm:py-5 text-white font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:text-hospital-blue shadow-2xl text-sm sm:text-base"
+              >
+                <Mail className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                Send Resume
+                <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
