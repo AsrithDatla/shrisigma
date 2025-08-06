@@ -66,7 +66,7 @@ export default function TestimonialsPage() {
         { number: '4.8/5', label: 'Average Rating', icon: Star },
         { number: '500+', label: 'Patient Reviews', icon: Users },
         { number: '95%', label: 'Satisfaction Rate', icon: ThumbsUp },
-        { number: '5000+', label: 'Happy Patients', icon: Heart },
+        { number: '50000+', label: 'Happy Patients', icon: Heart },
     ];
 
     return (
@@ -333,7 +333,7 @@ export default function TestimonialsPage() {
                                 <div className="text-sm text-gray-600">Reviews</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-2xl font-bold font-display text-hospital-teal mb-1">5000+</div>
+                                <div className="text-2xl font-bold font-display text-hospital-teal mb-1">50000+</div>
                                 <div className="text-sm text-gray-600">Happy Patients</div>
                             </div>
                             <div className="text-center">

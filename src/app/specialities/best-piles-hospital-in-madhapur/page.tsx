@@ -17,7 +17,7 @@ export default function PilesHospitalPage() {
         heroStats: [
             { number: '20+', label: 'Best Doctors' },
             { number: '75+', label: 'Bedded Hospitals' },
-            { number: '30000+', label: 'Happy Patients' }
+            { number: '50000+', label: 'Happy Patients' }
         ],
         features: [
             {
@@ -111,7 +111,7 @@ export default function PilesHospitalPage() {
         },
         treatmentStats: [
             { number: '35+', label: 'Years of Experience' },
-            { number: '30,000+', label: 'Patients Treated' },
+            { number: '50,000+', label: 'Patients Treated' },
             { number: '30', label: 'Minutes Procedure' },
             { number: '24 Hours', label: 'Back to Work in 24 Hours' }
         ],

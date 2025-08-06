@@ -1155,7 +1155,7 @@ const SpecialtyPageTemplate = ({
               </h2>
               <h4 className="text-xl text-gray-600 mb-6">
                 Over <span className="text-hospital-teal font-bold">35+ years</span> of experience<br />
-                <span className="text-hospital-teal font-bold">30,000+</span> of happy patients
+                <span className="text-hospital-teal font-bold">50,000+</span> of happy patients
               </h4>
             </div>
 

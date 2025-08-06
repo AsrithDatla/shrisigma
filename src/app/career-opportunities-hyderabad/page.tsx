@@ -65,7 +65,7 @@ export default function CareersPage() {
   const stats = [
     { number: '21+', label: 'Expert Doctors', icon: Users, color: 'hospital-blue' },
     { number: '14+', label: 'Medical Specialties', icon: Award, color: 'hospital-green' },
-    { number: '5000+', label: 'Happy Patients', icon: Heart, color: 'hospital-teal' },
+    { number: '50000+', label: 'Happy Patients', icon: Heart, color: 'hospital-teal' },
     { number: '24/7', label: 'Emergency Care', icon: Clock, color: 'hospital-yellow' },
   ];
 

@@ -23,6 +23,7 @@ export default function CriticalCarePage() {
         {
           name: 'Dr. Srinivas Jakkinaboina',
           qualification: 'MBBS (Osm), MD (NIMS), DM (CCM), EDIC (UK)',
+          experience: '15+ Years',
           designation: 'Sr. Consultant - Physician & Critical Care Specialist',
           image: '/images/service/doctor-images/doc-srinivas.webp',
         },

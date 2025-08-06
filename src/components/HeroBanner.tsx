@@ -184,7 +184,7 @@ const HeroBanner = () => {
               <div className="text-sm font-medium opacity-90">Expert Doctors</div>
             </div>
             <div className="group">
-              <div className="text-2xl md:text-3xl font-bold font-display text-hospital-yellow mb-1 group-hover:scale-110 transition-transform duration-200">5000+</div>
+              <div className="text-2xl md:text-3xl font-bold font-display text-hospital-yellow mb-1 group-hover:scale-110 transition-transform duration-200">50000+</div>
               <div className="text-sm font-medium opacity-90">Happy Patients</div>
             </div>
             <div className="group">

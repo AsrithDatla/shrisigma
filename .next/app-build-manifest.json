@@ -1,30 +1,340 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+    "/_not-found": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/app/_not-found-56cb709f2a1392e2.js"
     ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/29-d9d4dc7aa1e1c78a.js",
+      "static/css/12084f1610684dad.css",
+      "static/chunks/app/layout-78ab99b44889b595.js"
+    ],
+    "/best-doctors-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/best-doctors-madhapur-hyderabad/page-7e705fc5612f6a75.js"
+    ],
+    "/contact-us-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/app/contact-us-madhapur-hyderabad/page-9a7cfb12d61049d5.js"
+    ],
+    "/career-opportunities-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/career-opportunities-hyderabad/page-de2b585cf4977694.js"
+    ],
+    "/healthcare-blog-hyderabad/kidney-disease-hospital-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/kidney-disease-hospital-hyderabad/page-f16c68e0c7730395.js"
+    ],
+    "/healthcare-blog-hyderabad/anal-fissure-treatment-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/anal-fissure-treatment-madhapur-hyderabad/page-d49c681328b7da9d.js"
+    ],
+    "/healthcare-blog-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/page-8bf7305ce0218ef1.js"
+    ],
+    "/healthcare-blog-hyderabad/pcos-treatment-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/pcos-treatment-hyderabad/page-c30a3d17b8a8a2ca.js"
+    ],
+    "/healthcare-blog-hyderabad/phlegm-causes-treatment-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/phlegm-causes-treatment-hyderabad/page-7dcc4f914a5a8fed.js"
+    ],
+    "/healthcare-blog-hyderabad/uti-treatment-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/uti-treatment-hyderabad/page-80da8a42939ff167.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/app/page-715b7749d60f0bc0.js"
+    ],
+    "/patient-testimonials-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/app/patient-testimonials-madhapur-hyderabad/page-7b5429874f075172.js"
+    ],
+    "/healthcare-blog-hyderabad/stroke-prevention-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/healthcare-blog-hyderabad/stroke-prevention-hyderabad/page-c0a9745ac7cb0760.js"
+    ],
+    "/specialities/cardiology-hospital-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/cardiology-hospital-madhapur-hyderabad/page-d3c62018cb555f31.js"
+    ],
+    "/specialities/best-piles-hospital-in-madhapur/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/best-piles-hospital-in-madhapur/page-5d34f268f6c7ef35.js"
+    ],
+    "/privacy-policy/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/app/privacy-policy/page-be9b4fd2a60e05c7.js"
+    ],
+    "/specialities/diabetes-treatment-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/diabetes-treatment-hyderabad/page-4993bd716d4fd2ea.js"
+    ],
+    "/specialities/critical-care-hospital-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/critical-care-hospital-hyderabad/page-c1ab60af7bbd2ec7.js"
+    ],
+    "/specialities/ent-specialist-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/ent-specialist-madhapur-hyderabad/page-ca1d69975f065ea5.js"
+    ],
+    "/about-hospital-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/app/about-hospital-madhapur-hyderabad/page-c34b1b975a89fcea.js"
+    ],
+    "/specialities/general-medicine-doctors-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/general-medicine-doctors-hyderabad/page-b5023a71a99e9f52.js"
+    ],
+    "/specialities/gynecology-services-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/gynecology-services-madhapur-hyderabad/page-9fb4aebdddcf4831.js"
+    ],
+    "/specialities/general-surgery-hospital-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/general-surgery-hospital-hyderabad/page-74c6b1b73a9b4820.js"
+    ],
+    "/specialities/laser-proctology-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/laser-proctology-madhapur-hyderabad/page-4cfef041bbd0fe79.js"
+    ],
+    "/specialities/laser-surgery-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/laser-surgery-madhapur-hyderabad/page-b015fdf5291234d5.js"
+    ],
+    "/specialities/nutrition-and-diet-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/nutrition-and-diet-hyderabad/page-c2e0319c65bc1d51.js"
+    ],
+    "/specialities/neuroscience-care-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/neuroscience-care-madhapur-hyderabad/page-1ffad440a34bb1cc.js"
     ],
     "/specialities/physiotherapy-services-hyderabad/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialities/physiotherapy-services-hyderabad/page.js"
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/physiotherapy-services-hyderabad/page-6a560ce448bd8c4b.js"
+    ],
+    "/specialities/orthopedic-hospital-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/orthopedic-hospital-hyderabad/page-8580cdec22c75a98.js"
     ],
     "/specialities/plastic-surgery-hospital-hyderabad/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/specialities/plastic-surgery-hospital-hyderabad/page.js"
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/plastic-surgery-hospital-hyderabad/page-4b35a086c9cda31d.js"
     ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+    "/specialities/pulmonology-specialist-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/pulmonology-specialist-hyderabad/page-5d026b6e27051bbf.js"
+    ],
+    "/specialities/urology-hospital-madhapur-hyderabad/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/413-5b17f3f2cf33ec36.js",
+      "static/chunks/117-d62b1bbf72eb2b5f.js",
+      "static/chunks/574-0893ec7688de2abe.js",
+      "static/chunks/app/specialities/urology-hospital-madhapur-hyderabad/page-378e25271b1917f4.js"
+    ],
+    "/terms-and-conditions/page": [
+      "static/chunks/webpack-c493bb5002747b33.js",
+      "static/chunks/fd9d1056-36bfbfa023b14e9a.js",
+      "static/chunks/472-7c1c9b598ff21f3e.js",
+      "static/chunks/main-app-fb992f11be31214f.js",
+      "static/chunks/326-15b616076d4f29c2.js",
+      "static/chunks/app/terms-and-conditions/page-0610b9f2f96bc049.js"
     ]
   }
 }

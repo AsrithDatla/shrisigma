@@ -347,7 +347,7 @@ export default function BlogPage() {
                 <div className="text-xs sm:text-sm opacity-90">Specialties</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">5000+</div>
+                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">50000+</div>
                 <div className="text-xs sm:text-sm opacity-90">Happy Patients</div>
               </div>
               <div className="text-center">

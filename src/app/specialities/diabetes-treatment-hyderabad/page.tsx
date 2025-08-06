@@ -23,6 +23,7 @@ export default function DiabetologyPage() {
         {
           name: 'Dr. Bhargava Talluri',
           qualification: 'MBBS, MD (Internal Medicine)',
+          experience: '12+ Years',
           designation: 'Sr.Consultant Internal Medicine & Diabetes Specialist',
           image: '/images/service/doctor-images/Dr-bhargava.webp',
         },

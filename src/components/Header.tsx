@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  ChevronDown, 
-  Menu, 
-  X, 
-  Phone, 
-  MapPin, 
-  Clock, 
+import {
+  ChevronDown,
+  Menu,
+  X,
+  Phone,
+  MapPin,
+  Clock,
   Mail,
   Heart,
   Bone,
@@ -24,7 +24,6 @@ import {
   Dumbbell,
   Apple,
   Eye,
-  Lungs,
   User
 } from 'lucide-react';
 
@@ -143,7 +142,7 @@ const Header = () => {
               >
                 About Us
               </Link>
-              
+
               {/* Specialities Dropdown */}
               <div className="relative">
                 <button
@@ -261,7 +260,7 @@ const Header = () => {
                 >
                   About Us
                 </Link>
-                
+
                 {/* Mobile Specialities */}
                 <div>
                   <button
@@ -337,7 +336,7 @@ const Header = () => {
                 >
                   Contact
                 </Link>
-                
+
                 {/* Mobile Emergency Buttons */}
                 <div className="px-4 pt-4 space-y-2">
                   <Link

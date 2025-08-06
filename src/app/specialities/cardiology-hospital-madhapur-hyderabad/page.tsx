@@ -17,7 +17,7 @@ export default function CardiologyPage() {
     heroStats: [
       { number: '25+', label: 'Expert Cardiologists' },
       { number: '75+', label: 'Bedded Hospital' },
-      { number: '5000+', label: 'Heart Procedures' }
+      { number: '50000+', label: 'Heart Procedures' }
     ],
     features: [
       {

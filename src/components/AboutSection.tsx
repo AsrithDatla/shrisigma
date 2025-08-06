@@ -8,7 +8,7 @@ const AboutSection = () => {
   const stats = [
     { number: '75+', label: 'Bedded Hospital', icon: '🏥' },
     { number: '25+', label: 'Expert Doctors', icon: '👨‍⚕️' },
-    { number: '5000+', label: 'Happy Patients', icon: '😊' },
+    { number: '50000+', label: 'Happy Patients', icon: '😊' },
     { number: '20+', label: 'Insurance Partners', icon: '🛡️' },
   ];
 
