@@ -18,6 +18,14 @@ dist/
 .env.development.local
 .env.test.local
 .env.production.local
+.env.example
+
+# API Keys and Sensitive Data
+**/api-keys.json
+**/credentials.json
+**/*secret*
+**/*token*
+**/*key*.json
 
 # Vercel
 .vercel

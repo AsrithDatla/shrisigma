@@ -18,11 +18,22 @@ const StickyIcons = () => {
             </span>
           </div>
         </Link>
-        <Link
-          href="https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services"
+        <button
+          onClick={() => {
+            // Send via secure API route
+            fetch('/api/whatsapp', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                message: 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.',
+              }),
+            }).catch(() => {});
+            // Always open WhatsApp for user experience
+            window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services', '_blank');
+          }}
           className="group"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <div className="flex items-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-l-full bg-green-600 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl">
@@ -32,7 +43,7 @@ const StickyIcons = () => {
               WhatsApp
             </span>
           </div>
-        </Link>
+        </button>
       </div>
 
       {/* Mobile Bottom Bar */}
@@ -45,15 +56,26 @@ const StickyIcons = () => {
             <Phone className="mr-2 h-5 w-5" />
             <span className="font-semibold">Call Now</span>
           </Link>
-          <Link
-            href="https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services"
-            className="flex items-center justify-center bg-green-600 py-4 text-white transition-colors hover:bg-green-700"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => {
+              // Send via secure API route
+              fetch('/api/whatsapp', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  message: 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.',
+                }),
+              }).catch(() => {});
+              // Always open WhatsApp for user experience
+              window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services', '_blank');
+            }}
+            className="flex items-center justify-center bg-green-600 py-4 text-white transition-colors hover:bg-green-700 w-full"
           >
             <MessageCircle className="mr-2 h-5 w-5" />
             <span className="font-semibold">WhatsApp</span>
-          </Link>
+          </button>
         </div>
       </div>
 

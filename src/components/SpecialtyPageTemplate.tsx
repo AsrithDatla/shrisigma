@@ -1303,17 +1303,28 @@ const SpecialtyPageTemplate = ({
                 <Phone className="mr-3 h-6 w-6 group-hover:animate-bounce-gentle" />
                 Call: +91 89777 63308
               </Link>
-              <Link
-                href={`https://api.whatsapp.com/send?phone=+918977763308&text=I want to know more about ${title} treatment`}
+              <button
+                onClick={() => {
+                  // Send via secure API route
+                  fetch('/api/whatsapp', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      message: `I want to know more about ${title} treatment at Shri Sigma Hospitals.`,
+                    }),
+                  }).catch(() => {});
+                  // Always open WhatsApp for user experience
+                  window.open(`https://api.whatsapp.com/send?phone=+918977763308&text=I want to know more about ${title} treatment`, '_blank');
+                }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-10 py-5 text-white font-bold rounded-2xl transition-all duration-300 hover:bg-white hover:text-hospital-blue shadow-2xl"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 WhatsApp Us
                 <svg className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </button>
             </div>
 
             {/* Trust Indicators */}

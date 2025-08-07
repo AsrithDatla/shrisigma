@@ -161,10 +161,21 @@ export default function ContactPage() {
                 <Phone className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:animate-bounce" />
                 <span className="hidden sm:inline">Call Now: </span>+91 89777 63308
               </Link>
-              <Link
-                href="https://api.whatsapp.com/send?phone=+918977763308&text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => {
+                  // Send via secure API route
+                  fetch('/api/whatsapp', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      message: 'Hello, I would like to book an appointment at Shri Sigma Hospitals.',
+                    }),
+                  }).catch(() => {});
+                  // Always open WhatsApp for user experience
+                  window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment', '_blank');
+                }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue text-sm sm:text-base"
               >
                 <MessageCircle className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5" />
@@ -172,7 +183,7 @@ export default function ContactPage() {
                 <svg className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -582,10 +593,21 @@ export default function ContactPage() {
                 <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce" />
                 <span className="hidden sm:inline">Emergency: </span>+91 89777 63308
               </Link>
-              <Link
-                href="https://api.whatsapp.com/send?phone=+918977763308&text=Emergency%20-%20I%20need%20immediate%20medical%20assistance"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => {
+                  // Send via secure API route
+                  fetch('/api/whatsapp', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      message: 'Emergency - I need immediate medical assistance at Shri Sigma Hospitals.',
+                    }),
+                  }).catch(() => {});
+                  // Always open WhatsApp for user experience
+                  window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Emergency%20-%20I%20need%20immediate%20medical%20assistance', '_blank');
+                }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-4 sm:py-5 text-white font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:text-red-600 shadow-2xl text-sm sm:text-base"
               >
                 <MessageCircle className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
@@ -594,7 +616,7 @@ export default function ContactPage() {
                 <svg className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </button>
             </div>
 
             {/* Emergency Services */}
