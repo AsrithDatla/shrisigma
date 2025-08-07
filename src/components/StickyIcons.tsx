@@ -28,11 +28,11 @@ const StickyIcons = () => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                message: 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.',
+                message: 'I want to know more about your care services.',
               }),
             }).catch(() => {});
             // Always open WhatsApp for user experience
-            const message = 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.';
+            const message = 'I want to know more about your care services.';
             openWhatsAppWithMessage('918977763302', message);
           }}
           className="group"
@@ -67,11 +67,11 @@ const StickyIcons = () => {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                  message: 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.',
+                  message: 'I want to know more about your care services.',
                 }),
               }).catch(() => {});
               // Always open WhatsApp for user experience
-              const message = 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.';
+              const message = 'I want to know more about your care services.';
               openWhatsAppWithMessage('918977763302', message);
             }}
             className="flex items-center justify-center bg-green-600 py-4 text-white transition-colors hover:bg-green-700 w-full"
