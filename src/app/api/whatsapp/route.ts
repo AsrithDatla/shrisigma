@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const WATI_API_ENDPOINT = process.env.NEXT_PUBLIC_WATI_API_ENDPOINT || 'https://live-mt-server.wati.io/479177';
 const WATI_ACCESS_TOKEN = process.env.WATI_ACCESS_TOKEN || '';
-const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '918977763308';
+const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '918977763302';
 
 export async function POST(request: NextRequest) {
   try {

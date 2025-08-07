@@ -17,6 +17,7 @@ import {
   Globe,
   Shield
 } from 'lucide-react';
+import { openWhatsAppWithMessage } from '@/utils/whatsappHelper';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -92,8 +93,8 @@ export default function ContactPage() {
       title: 'Phone Numbers',
       items: [
         { label: 'Main Reception', value: '+91 88582 34345', href: 'tel:+918858234345' },
-        { label: 'Emergency', value: '+91 89777 63308', href: 'tel:+918977763308' },
-        { label: 'Appointments', value: '+91 89777 63308', href: 'tel:+918977763308' },
+        { label: 'Emergency', value: '+91 89777 63302', href: 'tel:+918977763302' },
+        { label: 'Appointments', value: '+91 89777 63302', href: 'tel:+918977763302' },
       ],
       icon: Phone,
       color: 'hospital-blue',
@@ -174,7 +175,8 @@ export default function ContactPage() {
                     }),
                   }).catch(() => {});
                   // Always open WhatsApp for user experience
-                  window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment', '_blank');
+                  const message = 'Hello, I would like to book an appointment at Shri Sigma Hospitals.';
+                  openWhatsAppWithMessage('918977763302', message);
                 }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue text-sm sm:text-base"
               >
@@ -606,7 +608,8 @@ export default function ContactPage() {
                     }),
                   }).catch(() => {});
                   // Always open WhatsApp for user experience
-                  window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Emergency%20-%20I%20need%20immediate%20medical%20assistance', '_blank');
+                  const message = 'Emergency - I need immediate medical assistance at Shri Sigma Hospitals.';
+                  openWhatsAppWithMessage('918977763302', message);
                 }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-4 sm:py-5 text-white font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:text-red-600 shadow-2xl text-sm sm:text-base"
               >

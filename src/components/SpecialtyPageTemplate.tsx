@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle, Clock, Shield, Award, Phone } from 'lucide-react';
 import ContactForm from './ContactForm';
+import { openWhatsAppWithMessage } from '@/utils/whatsappHelper';
 
 // FAQ Accordion Component
 const FAQAccordion = ({ faqs }: { faqs: FAQ[] }) => {
@@ -1316,7 +1317,8 @@ const SpecialtyPageTemplate = ({
                     }),
                   }).catch(() => {});
                   // Always open WhatsApp for user experience
-                  window.open(`https://api.whatsapp.com/send?phone=+918977763308&text=I want to know more about ${title} treatment`, '_blank');
+                  const message = `I want to know more about ${title} treatment at Shri Sigma Hospitals.`;
+                  openWhatsAppWithMessage('918977763302', message);
                 }}
                 className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-10 py-5 text-white font-bold rounded-2xl transition-all duration-300 hover:bg-white hover:text-hospital-blue shadow-2xl"
               >

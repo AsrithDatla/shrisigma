@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
+import { openWhatsAppWithMessage } from '@/utils/whatsappHelper';
 
 interface WhatsAppButtonProps {
   message: string;
@@ -13,7 +14,7 @@ interface WhatsAppButtonProps {
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   message,
-  phone = '+918977763308',
+  phone = '+918977763302',
   className = '',
   children,
   showIcon = true,
@@ -35,9 +36,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     }
 
     // Always open WhatsApp for user experience
-    const formattedPhone = phone.replace(/[\s+]/g, '');
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    openWhatsAppWithMessage(phone, message);
   };
 
   return (

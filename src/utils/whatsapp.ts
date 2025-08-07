@@ -1,7 +1,7 @@
 // WhatsApp WATI API Integration
 const WATI_API_ENDPOINT = process.env.NEXT_PUBLIC_WATI_API_ENDPOINT || 'https://live-mt-server.wati.io/479177';
 const WATI_ACCESS_TOKEN = process.env.WATI_ACCESS_TOKEN || '';
-const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '918977763308';
+const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '918977763302';
 
 export interface WhatsAppMessage {
   phone: string;
@@ -63,7 +63,24 @@ export function handleWhatsAppClick(phone: string, message: string) {
 // Generate WhatsApp URL with WATI integration
 export function getWhatsAppUrl(phone: string, message: string): string {
   const formattedPhone = phone.replace(/[\s+]/g, '');
-  return `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(message)}`;
+  
+  // Ensure proper encoding for both mobile and desktop
+  const encodedMessage = encodeURIComponent(message);
+  
+  // Use the standard WhatsApp API URL that works on both mobile and desktop
+  return `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodedMessage}`;
+}
+
+// Enhanced WhatsApp URL generator with better desktop compatibility
+export function openWhatsApp(phone: string, message: string): void {
+  const formattedPhone = phone.replace(/[\s+]/g, '');
+  const encodedMessage = encodeURIComponent(message);
+  
+  // Create the WhatsApp URL
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodedMessage}`;
+  
+  // Open WhatsApp
+  window.open(whatsappUrl, '_blank');
 }
 
 // WhatsApp button component props

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Phone, MessageCircle } from 'lucide-react';
+import { openWhatsAppWithMessage } from '@/utils/whatsappHelper';
 
 const StickyIcons = () => {
   return (
@@ -31,7 +32,8 @@ const StickyIcons = () => {
               }),
             }).catch(() => {});
             // Always open WhatsApp for user experience
-            window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services', '_blank');
+            const message = 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.';
+            openWhatsAppWithMessage('918977763302', message);
           }}
           className="group"
         >
@@ -69,7 +71,8 @@ const StickyIcons = () => {
                 }),
               }).catch(() => {});
               // Always open WhatsApp for user experience
-              window.open('https://api.whatsapp.com/send?phone=+918977763308&text=Welcome%20to%20shri%20sigma%20hospitals.%20I%20want%20to%20know%20more%20about%20our%20care%20Services', '_blank');
+              const message = 'Welcome to Shri Sigma Hospitals. I want to know more about your care services.';
+              openWhatsAppWithMessage('918977763302', message);
             }}
             className="flex items-center justify-center bg-green-600 py-4 text-white transition-colors hover:bg-green-700 w-full"
           >
