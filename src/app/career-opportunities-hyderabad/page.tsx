@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Users, Award, Heart, Clock, Send, User, MessageSquare, X } from 'lucide-react';
+import { Mail, Phone, MapPin, Users, Award, Heart, Clock, Send, User, MessageSquare, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function CareersPage() {
@@ -19,6 +19,17 @@ export default function CareersPage() {
     alt: string;
     title: string;
   } | null>(null);
+
+  const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+  
+  // Auto-collapse hero after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHeroExpanded(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -77,8 +88,8 @@ export default function CareersPage() {
         <meta name="keywords" content="Medical Job Openings in Madhapur, Healthcare Jobs in Madhapur Hyderabad, Hospital Job Vacancies in Madhapur, Support Staff Jobs in Healthcare Madhapur, Careers in Healthcare Madhapur Hyderabad" />
       </Head>
 
-      {/* Modern Hero Section - Mobile Optimized */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+      {/* Collapsible Hero Section - Mobile Optimized */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -86,54 +97,95 @@ export default function CareersPage() {
           }} />
         </div>
 
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-              <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-              <span className="text-xs sm:text-sm font-semibold">Join Our Team</span>
-            </div>
+        {/* Hero Section - Completely Hidden When Collapsed */}
+        <div className={`transition-all duration-500 overflow-hidden ${
+          isHeroExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="container mx-auto px-4 relative">
+            <div className="py-12 sm:py-16 lg:py-20">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                  <span className="text-xs sm:text-sm font-semibold">Join Our Team</span>
+                </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
-              <span className="block">Build Your Career in</span>
-              <span className="block text-hospital-yellow">Healthcare Excellence</span>
-            </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+                  <span className="block">Build Your Career in</span>
+                  <span className="block text-hospital-yellow">Healthcare Excellence</span>
+                </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
-              Join Shri Sigma Hospitals and be part of a team dedicated to providing world-class healthcare.
-              Discover exciting career opportunities in Hyderabad's leading multispecialty hospital.
-            </p>
-          </div>
-        </div>
-      </section>
+                <p className="text-base sm:text-lg lg:text-xl opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-8 sm:mb-12">
+                  Join Shri Sigma Hospitals and be part of a team dedicated to providing world-class healthcare.
+                  <span className="block mt-2">
+                    Discover exciting career opportunities in Hyderabad's leading multispecialty hospital.
+                  </span>
+                </p>
 
-      {/* Enhanced Stats Section - Mobile Optimized */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white -mt-6 sm:-mt-10 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="text-center group">
-                    <div className="mb-3 sm:mb-4 lg:mb-6 flex justify-center">
-                      <div className={`flex h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-${stat.color}/10 group-hover:bg-${stat.color}/20 group-hover:scale-110 transition-all duration-300`}>
-                        <IconComponent className={`h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-${stat.color}`} />
+                <div className="mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Users className="w-8 h-8 text-hospital-yellow" />
                       </div>
+                      <h3 className="font-semibold mb-2">Healthcare Professionals</h3>
+                      <p className="text-sm opacity-80">Doctors & Nurses</p>
                     </div>
-                    <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-${stat.color} mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300`}>
-                      {stat.number}
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Award className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">Support Staff</h3>
+                      <p className="text-sm opacity-80">Administrative roles</p>
                     </div>
-                    <div className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">{stat.label}</div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Heart className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">Growth Opportunities</h3>
+                      <p className="text-sm opacity-80">Career advancement</p>
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
+        {/* Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+          <button
+            onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+            className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-white/20"
+          >
+            <span className="text-sm font-medium text-hospital-blue mr-2">
+              {isHeroExpanded ? 'Hide Hero' : 'Show Hero'}
+            </span>
+            {isHeroExpanded ? (
+              <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
       </section>
+
+      {/* Top Toggle Button - Visible when hero is collapsed */}
+      {!isHeroExpanded && (
+        <div className="bg-hospital-blue py-3 relative z-20">
+          <div className="container mx-auto px-4 flex justify-center">
+            <button
+              onClick={() => setIsHeroExpanded(true)}
+              className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <span className="text-sm font-medium text-hospital-blue mr-2">Show Hero</span>
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Current Openings Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
             <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">

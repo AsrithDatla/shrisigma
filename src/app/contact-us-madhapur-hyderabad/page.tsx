@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   MapPin,
@@ -15,7 +15,9 @@ import {
   AlertCircle,
   Building,
   Globe,
-  Shield
+  Shield,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import { openWhatsAppWithMessage } from '@/utils/whatsappHelper';
 
@@ -31,6 +33,17 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+  const [isContactInfoExpanded, setIsContactInfoExpanded] = useState(true);
+  
+  // Auto-collapse hero after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHeroExpanded(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,8 +141,8 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Modern Hero Section */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+      {/* Collapsible Hero Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -137,62 +150,130 @@ export default function ContactPage() {
           }} />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-              <span className="text-xs sm:text-sm font-semibold">Get In Touch</span>
-            </div>
+        {/* Hero Section - Completely Hidden When Collapsed */}
+        <div className={`transition-all duration-500 overflow-hidden ${
+          isHeroExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="py-12 sm:py-16 lg:py-20">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                  <span className="text-xs sm:text-sm font-semibold">Get In Touch</span>
+                </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6">
-              <span className="block">Contact <span className="text-hospital-yellow">US</span></span>
-            </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6">
+                  <span className="block">Contact <span className="text-hospital-yellow">US</span></span>
+                </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
-              Get in touch with us for appointments, emergency care, or any healthcare queries.
-              We're here to help you 24/7 with world-class medical services.
-            </p>
+                <p className="text-base sm:text-lg lg:text-xl opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-8 sm:mb-12">
+                  Get in touch with us for appointments, emergency care, or any healthcare queries.
+                  <span className="block mt-2">
+                    We're here to help you 24/7 with world-class medical services.
+                  </span>
+                </p>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row sm:justify-center mb-8 sm:mb-12 px-4">
-              <Link
-                href="tel:+918977763308"
-                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105 text-sm sm:text-base"
-              >
-                <Phone className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:animate-bounce" />
-                <span className="hidden sm:inline">Call Now: </span>+91 89777 63308
-              </Link>
-              <button
-                onClick={() => {
-                  // Send via secure API route
-                  fetch('/api/whatsapp', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                      message: 'Hello, I would like to book an appointment at Shri Sigma Hospitals.',
-                    }),
-                  }).catch(() => {});
-                  // Always open WhatsApp for user experience
-                  const message = 'Hello, I would like to book an appointment at Shri Sigma Hospitals.';
-                  openWhatsAppWithMessage('918977763302', message);
-                }}
-                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue text-sm sm:text-base"
-              >
-                <MessageCircle className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5" />
-                WhatsApp Us
-                <svg className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
+                {/* Hero Content */}
+                <div className="mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Phone className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">24/7 Support</h3>
+                      <p className="text-sm opacity-80">Always available</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <MessageCircle className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">Quick Response</h3>
+                      <p className="text-sm opacity-80">Within 24 hours</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <MapPin className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">Easy Location</h3>
+                      <p className="text-sm opacity-80">Madhapur, Hyderabad</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Action Buttons */}
+                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row sm:justify-center mb-6 px-4">
+                  <Link
+                    href="tel:+918977763308"
+                    className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105 text-sm sm:text-base"
+                  >
+                    <Phone className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:animate-bounce" />
+                    <span className="hidden sm:inline">Call Now: </span>+91 89777 63308
+                  </Link>
+                  <button
+                    onClick={() => {
+                      // Send via secure API route
+                      fetch('/api/whatsapp', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          message: 'Hello, I would like to book an appointment at Shri Sigma Hospitals.',
+                        }),
+                      }).catch(() => {});
+                      // Always open WhatsApp for user experience
+                      const message = 'Hello, I would like to book an appointment at Shri Sigma Hospitals.';
+                      openWhatsAppWithMessage('918977763302', message);
+                    }}
+                    className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue text-sm sm:text-base"
+                  >
+                    <MessageCircle className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5" />
+                    WhatsApp Us
+                    <svg className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
+        {/* Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+          <button
+            onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+            className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-white/20"
+          >
+            <span className="text-sm font-medium text-hospital-blue mr-2">
+              {isHeroExpanded ? 'Hide Hero' : 'Show Hero'}
+            </span>
+            {isHeroExpanded ? (
+              <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
       </section>
 
+      {/* Top Toggle Button - Visible when hero is collapsed */}
+      {!isHeroExpanded && (
+        <div className="bg-hospital-blue py-3 relative z-20">
+          <div className="container mx-auto px-4 flex justify-center">
+            <button
+              onClick={() => setIsHeroExpanded(true)}
+              className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <span className="text-sm font-medium text-hospital-blue mr-2">Show Hero</span>
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Contact Form & Get In Touch Section - Side by Side on Desktop */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 -mt-6 sm:-mt-10 relative z-10">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
@@ -217,16 +298,33 @@ export default function ContactPage() {
                 <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
                   <div className="p-6 sm:p-8">
                     <div className="text-center lg:text-left mb-8">
-                      <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
-                        <Phone className="w-5 h-5 mr-2 text-hospital-blue" />
-                        <span className="text-sm font-semibold text-hospital-blue">Contact Information</span>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2">
+                          <Phone className="w-5 h-5 mr-2 text-hospital-blue" />
+                          <span className="text-sm font-semibold text-hospital-blue">Contact Information</span>
+                        </div>
+                        <button
+                          onClick={() => setIsContactInfoExpanded(!isContactInfoExpanded)}
+                          className="flex items-center text-hospital-blue hover:text-hospital-blue-dark transition-colors duration-200 lg:hidden"
+                        >
+                          <span className="text-sm font-medium mr-2">
+                            {isContactInfoExpanded ? 'Hide Details' : 'Show Details'}
+                          </span>
+                          {isContactInfoExpanded ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                        </button>
                       </div>
                       <h3 className="text-2xl sm:text-3xl font-bold font-display text-hospital-blue mb-4">
                         Multiple Ways to <span className="text-hospital-green">Reach Us</span>
                       </h3>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className={`space-y-6 transition-all duration-500 ease-in-out overflow-hidden lg:max-h-none lg:opacity-100 ${
+                      isContactInfoExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100'
+                    }`}>
                       {contactInfo.map((section, index) => {
                         const IconComponent = section.icon;
                         return (

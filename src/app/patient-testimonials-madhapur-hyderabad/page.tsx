@@ -2,9 +2,21 @@
 
 import Head from 'next/head';
 import Link from 'next/link';
-import { Star, Users, ThumbsUp, Heart, Play, Quote, Award, Stethoscope, Phone, Mail } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Star, Users, ThumbsUp, Heart, Play, Quote, Award, Stethoscope, Phone, Mail, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function TestimonialsPage() {
+    const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+    const [showAllTestimonials, setShowAllTestimonials] = useState(false);
+    
+    // Auto-collapse hero after 3 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsHeroExpanded(false);
+        }, 3000);
+        
+        return () => clearTimeout(timer);
+    }, []);
     const videoTestimonials = [
         {
             department: 'General Medicine',
@@ -78,8 +90,8 @@ export default function TestimonialsPage() {
                 <link rel="canonical" href="patient-testimonials-madhapur-hyderabad.html" />
             </Head>
 
-            {/* Modern Hero Section */}
-            <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+            {/* Collapsible Hero Section */}
+            <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute inset-0" style={{
@@ -88,53 +100,85 @@ export default function TestimonialsPage() {
                 </div>
 
                 <div className="container mx-auto px-4 relative">
-                    <div className="text-center max-w-4xl mx-auto">
-                        <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-                            <Quote className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-                            <span className="text-xs sm:text-sm font-semibold">Patient Stories</span>
-                        </div>
+                    <div className={`transition-all duration-500 ${isHeroExpanded ? 'py-12 sm:py-16 lg:py-20' : 'py-8 sm:py-12 lg:py-16'}`}>
+                        <div className="text-center max-w-4xl mx-auto">
+                            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                                <Quote className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                                <span className="text-xs sm:text-sm font-semibold">Patient Stories</span>
+                            </div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
-                            <span className="whitespace-nowrap">Patient</span>
-                            <span className="block text-hospital-yellow whitespace-nowrap">Testimonials</span>
-                        </h1>
+                            <h1 className={`font-bold font-display mb-4 sm:mb-6 heading-no-break px-2 transition-all duration-500 ${
+                                isHeroExpanded 
+                                    ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' 
+                                    : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
+                            }`}>
+                                <span className="whitespace-nowrap">Patient</span>
+                                <span className="block text-hospital-yellow whitespace-nowrap">Testimonials</span>
+                            </h1>
 
-                        <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
-                            Real experiences from our satisfied patients who have received
-                            world-class healthcare at Shri Sigma Hospitals
-                        </p>
-                    </div>
-                </div>
-            </section>
+                            <p className={`opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-6 transition-all duration-500 ${
+                                isHeroExpanded 
+                                    ? 'text-base sm:text-lg lg:text-xl mb-8 sm:mb-12' 
+                                    : 'text-sm sm:text-base lg:text-lg mb-6 sm:mb-8'
+                            }`}>
+                                Real experiences from our satisfied patients who have received world-class healthcare
+                                {isHeroExpanded && (
+                                    <span className="block mt-2">
+                                        at Shri Sigma Hospitals
+                                    </span>
+                                )}
+                            </p>
 
-            {/* Enhanced Stats Section */}
-            <section className="py-8 sm:py-12 lg:py-16 bg-white -mt-6 sm:-mt-10 relative z-10">
-                <div className="container mx-auto px-4">
-                    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-                            {stats.map((stat, index) => {
-                                const IconComponent = stat.icon;
-                                return (
-                                    <div key={index} className="text-center group">
-                                        <div className="mb-3 sm:mb-4 lg:mb-6 flex justify-center">
-                                            <div className="flex h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-hospital-blue/10 group-hover:bg-hospital-blue/20 group-hover:scale-110 transition-all duration-300">
-                                                <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-hospital-blue" />
-                                            </div>
+                            {/* Expandable Content */}
+                            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                                isHeroExpanded ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0'
+                            }`}>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <Star className="w-8 h-8 text-hospital-yellow" />
                                         </div>
-                                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-hospital-blue mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
-                                            {stat.number}
-                                        </div>
-                                        <div className="text-gray-600 font-medium text-xs sm:text-sm lg:text-base">{stat.label}</div>
+                                        <h3 className="font-semibold mb-2">4.8/5 Rating</h3>
+                                        <p className="text-sm opacity-80">Patient satisfaction</p>
                                     </div>
-                                );
-                            })}
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <Users className="w-8 h-8 text-hospital-yellow" />
+                                        </div>
+                                        <h3 className="font-semibold mb-2">500+ Reviews</h3>
+                                        <p className="text-sm opacity-80">Happy patients</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <Play className="w-8 h-8 text-hospital-yellow" />
+                                        </div>
+                                        <h3 className="font-semibold mb-2">Video Stories</h3>
+                                        <p className="text-sm opacity-80">Real experiences</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Expand/Collapse Toggle */}
+                            <button
+                                onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                                className="group inline-flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+                            >
+                                <span className="text-sm font-medium mr-2">
+                                    {isHeroExpanded ? 'Show Less' : 'Show More'}
+                                </span>
+                                {isHeroExpanded ? (
+                                    <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-300" />
+                                ) : (
+                                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
+                                )}
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Video Testimonials Section */}
-            <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+            <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 -mt-6 sm:-mt-10 relative z-10">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8 sm:mb-12 lg:mb-16">
                         <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6">
@@ -151,7 +195,7 @@ export default function TestimonialsPage() {
                     </div>
 
                     <div className="space-y-8 sm:space-y-12">
-                        {videoTestimonials.map((testimonial, index) => (
+                        {(showAllTestimonials ? videoTestimonials : videoTestimonials.slice(0, 3)).map((testimonial, index) => (
                             <div key={index} className="group">
                                 <div className="bg-white rounded-2xl sm:rounded-3xl shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 overflow-hidden">
                                     <div className="flex flex-col lg:flex-row">
@@ -228,6 +272,33 @@ export default function TestimonialsPage() {
                             </div>
                         ))}
                     </div>
+
+                    {/* Load More Button */}
+                    {!showAllTestimonials && videoTestimonials.length > 3 && (
+                        <div className="text-center mt-12">
+                            <button
+                                onClick={() => setShowAllTestimonials(true)}
+                                className="group inline-flex items-center justify-center bg-hospital-blue hover:bg-hospital-blue-dark px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"
+                            >
+                                <Play className="mr-3 h-5 w-5" />
+                                Load More Testimonials
+                                <ChevronDown className="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Show Less Button */}
+                    {showAllTestimonials && (
+                        <div className="text-center mt-12">
+                            <button
+                                onClick={() => setShowAllTestimonials(false)}
+                                className="group inline-flex items-center justify-center bg-gray-600 hover:bg-gray-700 px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"
+                            >
+                                Show Less
+                                <ChevronUp className="ml-2 w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300" />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
             

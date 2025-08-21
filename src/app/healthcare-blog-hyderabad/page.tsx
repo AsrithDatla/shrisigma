@@ -1,14 +1,24 @@
 'use client';
 
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, User, Clock, ArrowRight, Heart, Brain, Bone, Baby, Search, Filter, BookOpen, TrendingUp } from 'lucide-react';
-import { useState } from 'react';
+import Head from 'next/head';
+import { Calendar, User, Clock, ArrowRight, Heart, Brain, Bone, Baby, Search, Filter, BookOpen, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('All Posts');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+  
+  // Auto-collapse hero after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHeroExpanded(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const blogPosts = [
     {
@@ -63,32 +73,6 @@ export default function BlogPage() {
       icon: Baby,
       featured: false,
     },
-    {
-      id: 'stroke-prevention-hyderabad',
-      title: '5 – Essential Foods for Preventing Strokes: A Comprehensive Approach',
-      excerpt: 'Preventing strokes is a critical aspect of maintaining overall health and well-being. Each year, a significant number of lives are tragically lost to strokes, making it imperative',
-      author: 'Dr. Krishna Kishore Reddy',
-      specialty: 'Cardiologist',
-      date: '2024-02-25',
-      readTime: '5 min read',
-      image: '/images/service/blog-5.webp',
-      category: 'Cardiology',
-      icon: Heart,
-      featured: false,
-    },
-    {
-      id: 'phlegm-causes-treatment-hyderabad',
-      title: 'Decoding Your Phlegm : What It Says About Your Health',
-      excerpt: 'Discover how the color and texture of your phlegm can offer valuable insights into your health. Understanding these signs can help you address potential issues and maintain better well-being.',
-      author: 'Dr. M.M. Shareef',
-      specialty: 'ENT Specialist',
-      date: '2024-02-20',
-      readTime: '4 min read',
-      image: '/images/service/blog-6.webp',
-      category: 'ENT',
-      icon: Heart,
-      featured: false,
-    },
   ];
 
   const categories = [
@@ -103,13 +87,16 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const featuredPosts = blogPosts.filter(post => post.featured);
-  const recentPosts = blogPosts.filter(post => !post.featured);
-
   return (
     <>
-      {/* Hero Section - Mobile Optimized */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+      <Head>
+        <title>Healthcare Blog Hyderabad | Medical Insights & Health Tips</title>
+        <meta name="description" content="Stay informed with the latest medical insights, health tips, and expert advice from our experienced doctors and healthcare professionals at Shri Sigma Hospitals." />
+        <meta name="keywords" content="healthcare blog, medical insights, health tips, expert advice, doctors blog, medical articles, health information" />
+      </Head>
+      
+      {/* Collapsible Hero Section - Mobile Optimized */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -118,62 +105,116 @@ export default function BlogPage() {
         </div>
 
         <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-              <span className="text-xs sm:text-sm font-semibold">Health & Wellness</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
-              <span className="whitespace-nowrap">Healthcare</span>
-              <span className="block text-hospital-yellow whitespace-nowrap">Blog</span>
-            </h1>
-
-            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto px-4">
-              Stay informed with the latest medical insights, health tips, and expert advice
-              from our experienced doctors and healthcare professionals
-            </p>
-
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search health articles..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300"
-                />
+          <div className={`transition-all duration-500 ${isHeroExpanded ? 'py-12 sm:py-16 lg:py-20' : 'py-8 sm:py-12 lg:py-16'}`}>
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                <span className="text-xs sm:text-sm font-semibold">Health & Wellness</span>
               </div>
+
+              <h1 className={`font-bold font-display mb-4 sm:mb-6 heading-no-break px-2 transition-all duration-500 ${
+                isHeroExpanded 
+                  ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' 
+                  : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
+              }`}>
+                <span className="whitespace-nowrap">Healthcare</span>
+                <span className="block text-hospital-yellow whitespace-nowrap">Blog</span>
+              </h1>
+
+              <p className={`opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-6 transition-all duration-500 ${
+                isHeroExpanded 
+                  ? 'text-base sm:text-lg lg:text-xl mb-8 sm:mb-12' 
+                  : 'text-sm sm:text-base lg:text-lg mb-6 sm:mb-8'
+              }`}>
+                Stay informed with the latest medical insights, health tips, and expert advice
+                {isHeroExpanded && (
+                  <span className="block mt-2">
+                    from our experienced doctors and healthcare professionals
+                  </span>
+                )}
+              </p>  
+            {/* Expandable Content */}
+              <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                isHeroExpanded ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <BookOpen className="w-8 h-8 text-hospital-yellow" />
+                    </div>
+                    <h3 className="font-semibold mb-2">Expert Articles</h3>
+                    <p className="text-sm opacity-80">Doctor-written content</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Heart className="w-8 h-8 text-hospital-yellow" />
+                    </div>
+                    <h3 className="font-semibold mb-2">Health Tips</h3>
+                    <p className="text-sm opacity-80">Wellness guidance</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <TrendingUp className="w-8 h-8 text-hospital-yellow" />
+                    </div>
+                    <h3 className="font-semibold mb-2">Latest Updates</h3>
+                    <p className="text-sm opacity-80">Medical advances</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Search Bar */}
+              <div className="max-w-2xl mx-auto mb-6">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="text"
+                    placeholder="Search health articles..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Expand/Collapse Toggle */}
+              <button
+                onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                className="group inline-flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <span className="text-sm font-medium mr-2">
+                  {isHeroExpanded ? 'Show Less' : 'Show More'}
+                </span>
+                {isHeroExpanded ? (
+                  <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-300" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
+                )}
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories Filter - Mobile Optimized */}
-      <section className="bg-white py-8 sm:py-12 -mt-6 sm:-mt-10 relative z-10">
+      {/* All Blog Posts - Mobile Optimized Grid */}
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8">
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-4">
-                <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-blue" />
-                <span className="text-xs sm:text-sm font-semibold text-hospital-blue">Filter by Category</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold font-display text-hospital-blue heading-no-break">
-                <span className="block whitespace-nowrap">Explore Health Topics</span>
-              </h2>
+          {/* Category Filter Buttons */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6">
+              <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-blue" />
+              <span className="text-xs sm:text-sm font-semibold text-hospital-blue">Filter by Category</span>
             </div>
-
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${selectedCategory === category
-                    ? 'bg-hospital-blue text-white shadow-lg scale-105'
-                    : 'bg-gray-100 text-gray-700 hover:bg-hospital-blue/10 hover:text-hospital-blue border border-gray-200'
-                    }`}
+                  className={`rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-hospital-blue text-white shadow-lg scale-105'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105'
+                  }`}
                 >
                   {category}
                 </button>
@@ -181,43 +222,34 @@ export default function BlogPage() {
             </div>
 
             {/* Results Count */}
-            <div className="text-center mt-6">
-              <p className="text-gray-600">
-                Showing <span className="font-bold text-hospital-blue">{filteredPosts.length}</span> articles
-                {selectedCategory !== 'All Posts' && (
-                  <span> in <span className="font-bold text-hospital-green">{selectedCategory}</span></span>
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Blog Posts - Mobile Optimized Grid */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <div className="container mx-auto px-4">
+            <p className="text-gray-600">
+              Showing <span className="font-bold text-hospital-blue">{filteredPosts.length}</span> articles
+              {selectedCategory !== 'All Posts' && (
+                <span> in <span className="font-semibold">{selectedCategory}</span></span>
+              )}
+            </p>
+          </div>       
+   
           {filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {filteredPosts.map((post) => {
                 const IconComponent = post.icon;
                 return (
                   <article key={post.id} className="group">
-                    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 overflow-hidden h-full">
+                    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group-hover:-translate-y-2">
                       {/* Image Container */}
-                      <div className="relative h-64 sm:h-72 lg:h-80">
+                      <div className="relative h-48 sm:h-56 overflow-hidden">
                         <Image
                           src={post.image}
                           alt={post.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
                         {/* Category Badge */}
                         <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                          <span className="flex items-center bg-hospital-blue/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
-                            <IconComponent className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                          <span className="flex items-center bg-hospital-blue/90 backdrop-blur-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
+                            <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                             {post.category}
                           </span>
                         </div>
@@ -225,8 +257,8 @@ export default function BlogPage() {
                         {/* Featured Badge */}
                         {post.featured && (
                           <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
-                            <span className="flex items-center bg-hospital-yellow/90 backdrop-blur-sm text-hospital-blue px-3 py-1.5 rounded-full text-xs font-semibold">
-                              <TrendingUp className="mr-1 h-3 w-3" />
+                            <span className="flex items-center bg-hospital-yellow/90 backdrop-blur-sm text-hospital-blue px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold">
+                              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                               Featured
                             </span>
                           </div>
@@ -235,11 +267,11 @@ export default function BlogPage() {
 
                       {/* Content */}
                       <div className="p-4 sm:p-6 flex flex-col min-h-[280px] sm:min-h-[320px]">
-                        <h3 className="card-title text-lg sm:text-xl mb-3 line-clamp-2 group-hover:text-hospital-green transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-hospital-blue transition-colors duration-300">
                           {post.title}
                         </h3>
 
-                        <p className="card-excerpt text-sm sm:text-base mb-4 line-clamp-3 flex-grow">
+                        <p className="text-gray-600 text-sm sm:text-base mb-4 line-clamp-3 flex-grow">
                           {post.excerpt}
                         </p>
 
@@ -247,16 +279,18 @@ export default function BlogPage() {
                         <div className="space-y-2 mb-4">
                           <div className="flex items-center text-xs sm:text-sm text-gray-500">
                             <User className="mr-1 h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                            <span className="font-medium truncate">{post.author}</span>
+                            <span className="font-medium">{post.author}</span>
+                            <span className="mx-2">•</span>
+                            <span>{post.specialty}</span>
                           </div>
                           <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500">
                             <div className="flex items-center">
                               <Calendar className="mr-1 h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                              <span className="whitespace-nowrap">{new Date(post.date).toLocaleDateString()}</span>
+                              <span>{new Date(post.date).toLocaleDateString()}</span>
                             </div>
                             <div className="flex items-center">
                               <Clock className="mr-1 h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                              <span className="whitespace-nowrap">{post.readTime}</span>
+                              <span>{post.readTime}</span>
                             </div>
                           </div>
                         </div>
@@ -264,10 +298,10 @@ export default function BlogPage() {
                         {/* Read More Button */}
                         <Link
                           href={`/healthcare-blog-hyderabad/${post.id}`}
-                          className="inline-flex items-center justify-center bg-gradient-to-r from-hospital-blue to-hospital-blue-dark text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 group/btn text-sm sm:text-base"
+                          className="inline-flex items-center text-hospital-blue hover:text-hospital-blue-dark font-semibold text-sm sm:text-base group/link transition-colors duration-300"
                         >
                           Read Article
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
                         </Link>
                       </div>
                     </div>
@@ -286,10 +320,9 @@ export default function BlogPage() {
             </div>
           )}
         </div>
-      </section>
-
-      {/* Enhanced CTA Section */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-12 sm:py-16 lg:py-20 text-white overflow-hidden">
+      </section>      {/* En
+hanced CTA Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white py-16 sm:py-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -297,62 +330,62 @@ export default function BlogPage() {
           }} />
         </div>
 
-        <div className="container mx-auto px-4 text-center relative">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6">
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
               <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-              <span className="text-xs sm:text-sm font-semibold">Expert Medical Care</span>
+              <span className="text-xs sm:text-sm font-semibold">Expert Care</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 sm:mb-6 heading-no-break px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display mb-4 sm:mb-6">
               <span className="whitespace-nowrap">Need Medical</span>
               <span className="block text-hospital-yellow whitespace-nowrap">Consultation?</span>
             </h2>
 
-            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto">
               Our expert doctors are available for consultation and treatment.
-              Get personalized healthcare advice from experienced specialists.
+              Get personalized healthcare advice from our specialists.
             </p>
 
-            <div className="flex flex-col gap-4 sm:gap-6 sm:flex-row sm:justify-center px-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12">
               <Link
                 href="/best-doctors-madhapur-hyderabad"
-                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-6 sm:px-10 py-4 sm:py-5 text-hospital-blue font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:scale-105 shadow-2xl text-sm sm:text-base"
+                className="group inline-flex items-center bg-hospital-yellow text-hospital-blue px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg"
               >
-                <User className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce" />
+                <User className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 Consult Our Doctors
               </Link>
               <Link
                 href="tel:+918977763308"
-                className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-6 sm:px-10 py-4 sm:py-5 text-white font-bold rounded-xl sm:rounded-2xl transition-all duration-300 hover:bg-white hover:text-hospital-blue shadow-2xl text-sm sm:text-base"
+                className="group inline-flex items-center bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:scale-105"
               >
                 <svg className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
                 Call: +91 89777 63308
-                <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
             {/* Trust Indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-2xl mx-auto mt-12 sm:mt-16">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">21+</div>
-                <div className="text-xs sm:text-sm opacity-90">Expert Doctors</div>
+                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">15+</div>
+                <div className="text-xs sm:text-sm opacity-80">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">14+</div>
-                <div className="text-xs sm:text-sm opacity-90">Specialties</div>
+                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">50+</div>
+                <div className="text-xs sm:text-sm opacity-80">Expert Doctors</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">50000+</div>
-                <div className="text-xs sm:text-sm opacity-90">Happy Patients</div>
+                <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">25+</div>
+                <div className="text-xs sm:text-sm opacity-80">Specialties</div>
               </div>
               <div className="text-center">
                 <div className="text-xl sm:text-2xl font-bold font-display text-hospital-yellow mb-1">24/7</div>
-                <div className="text-xs sm:text-sm opacity-90">Available</div>
+                <div className="text-xs sm:text-sm opacity-80">Emergency Care</div>
               </div>
             </div>
           </div>

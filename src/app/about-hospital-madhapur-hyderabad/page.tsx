@@ -1,15 +1,24 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { Award, Users, Clock, Shield, Heart, Target, Eye, CheckCircle, Star, Phone, MapPin, Stethoscope, Activity, UserCheck, Zap } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'About Shri Sigma Hospitals | Best Multispecialty Hospital in Madhapur Hyderabad',
-  description: 'Learn about Shri Sigma Hospitals - a leading multispecialty hospital in Madhapur, Hyderabad. Our mission, vision, values, and commitment to excellence in healthcare.',
-  keywords: 'about Shri Sigma Hospitals, multispecialty hospital Madhapur, healthcare excellence, hospital mission vision, medical facilities Hyderabad',
-};
+import Head from 'next/head';
+import { Award, Users, Clock, Shield, Heart, Target, Eye, CheckCircle, Star, Phone, MapPin, Stethoscope, Activity, UserCheck, Zap, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function AboutPage() {
+  const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+  const [isMissionExpanded, setIsMissionExpanded] = useState(false);
+  
+  // Auto-collapse hero after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHeroExpanded(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   const coreValues = [
     {
       title: 'Advanced Clinical Treatments',
@@ -39,8 +48,13 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Modern Hero Section */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+      <Head>
+        <title>About Shri Sigma Hospitals | Best Multispecialty Hospital in Madhapur Hyderabad</title>
+        <meta name="description" content="Learn about Shri Sigma Hospitals - a leading multispecialty hospital in Madhapur, Hyderabad. Our mission, vision, values, and commitment to excellence in healthcare." />
+        <meta name="keywords" content="about Shri Sigma Hospitals, multispecialty hospital Madhapur, healthcare excellence, hospital mission vision, medical facilities Hyderabad" />
+      </Head>
+      {/* Collapsible Hero Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -48,46 +62,111 @@ export default function AboutPage() {
           }} />
         </div>
 
-        <div className="container mx-auto px-4 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <Stethoscope className="w-5 h-5 mr-2 text-hospital-yellow" />
-                <span className="text-sm font-semibold">About Our Hospital</span>
-              </div>
+        {/* Hero Section - Completely Hidden When Collapsed */}
+        <div className={`transition-all duration-500 overflow-hidden ${
+          isHeroExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="container mx-auto px-4 relative">
+            <div className="py-20">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                  <Stethoscope className="w-5 h-5 mr-2 text-hospital-yellow" />
+                  <span className="text-sm font-semibold">About Our Hospital</span>
+                </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
-                <span className="block">About Shri Sigma</span>
-                <span className="block text-hospital-yellow">Hospitals</span>
-              </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
+                  <span className="block">About Shri Sigma</span>
+                  <span className="block text-hospital-yellow">Hospitals</span>
+                </h1>
 
-              <p className="text-xl mb-8 opacity-90 leading-relaxed">
-                Shri Sigma Super Speciality Hospital, Madhapur, Hyderabad - Leading multispecialty hospital
-                committed to providing world-class healthcare with compassion, innovation, and excellence.
-              </p>
+                <p className="text-xl opacity-90 leading-relaxed mb-8">
+                  Leading multispecialty hospital committed to providing world-class healthcare
+                  <span className="block mt-2">
+                    with compassion, innovation, and excellence in Madhapur, Hyderabad.
+                  </span>
+                </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="#our-story"
-                  className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-8 py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105"
-                >
-                  Learn Our Story
-                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <Link
-                  href="/contact-us-madhapur-hyderabad"
-                  className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue"
-                >
-                  <Phone className="mr-2 h-5 w-5" />
-                  Contact Us
-                </Link>
+                <div className="mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Users className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">21+ Expert Doctors</h3>
+                      <p className="text-sm opacity-80">Experienced specialists</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Award className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">14+ Specialties</h3>
+                      <p className="text-sm opacity-80">Comprehensive care</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Clock className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">24/7 Emergency</h3>
+                      <p className="text-sm opacity-80">Always available</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                  <Link
+                    href="#our-story"
+                    className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm px-8 py-4 text-hospital-blue font-bold rounded-xl transition-all duration-300 hover:bg-white hover:scale-105"
+                  >
+                    Learn Our Story
+                    <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                  <Link
+                    href="/contact-us-madhapur-hyderabad"
+                    className="group inline-flex items-center justify-center border-2 border-white/80 backdrop-blur-sm px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white hover:text-hospital-blue"
+                  >
+                    <Phone className="mr-2 h-5 w-5" />
+                    Contact Us
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
+        {/* Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+          <button
+            onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+            className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-white/20"
+          >
+            <span className="text-sm font-medium text-hospital-blue mr-2">
+              {isHeroExpanded ? 'Hide Hero' : 'Show Hero'}
+            </span>
+            {isHeroExpanded ? (
+              <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
       </section>
+
+      {/* Top Toggle Button - Visible when hero is collapsed */}
+      {!isHeroExpanded && (
+        <div className="bg-hospital-blue py-3 relative z-20">
+          <div className="container mx-auto px-4 flex justify-center">
+            <button
+              onClick={() => setIsHeroExpanded(true)}
+              className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <span className="text-sm font-medium text-hospital-blue mr-2">Show Hero</span>
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Our Story Section - Enhanced */}
       <section id="our-story" className="py-20 bg-white">
@@ -178,7 +257,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission, Vision, Values - Modern Design */}
+      {/* Collapsible Mission, Vision, Values Section */}
       <section className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -189,60 +268,80 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold font-display text-hospital-blue mb-6 heading-no-break">
               <span className="whitespace-nowrap">Mission, Vision</span> <span className="whitespace-nowrap">& Values</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
               Our core principles guide every decision we make and every service we provide
             </p>
+            
+            {/* Toggle Button */}
+            <button
+              onClick={() => setIsMissionExpanded(!isMissionExpanded)}
+              className="group inline-flex items-center justify-center bg-hospital-blue/10 hover:bg-hospital-blue/20 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+            >
+              <span className="text-sm font-medium text-hospital-blue mr-2">
+                {isMissionExpanded ? 'Hide Details' : 'View Details'}
+              </span>
+              {isMissionExpanded ? (
+                <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+              )}
+            </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {[
-              {
-                title: 'Vision',
-                description: 'To be the most trusted healthcare provider, delivering world-class medical services with compassion and excellence.',
-                icon: Eye,
-                color: 'bg-hospital-blue',
-              },
-              {
-                title: 'Mission',
-                description: 'To provide comprehensive, affordable, and accessible healthcare services while maintaining the highest standards of medical excellence.',
-                icon: Target,
-                color: 'bg-hospital-green',
-              },
-              {
-                title: 'Values',
-                description: 'Compassion, Integrity, Excellence, Innovation, and Respect guide everything we do in our commitment to exceptional patient care.',
-                icon: Heart,
-                color: 'bg-hospital-teal',
-              },
-            ].map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <div key={index} className="group">
-                  <div className="bg-white rounded-3xl p-8 shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 h-full">
-                    <div className="text-center">
-                      <div className="mb-8 flex justify-center">
-                        <div className={`flex h-24 w-24 items-center justify-center rounded-2xl ${item.color} group-hover:scale-110 transition-transform duration-300 shadow-large`}>
-                          <IconComponent className="h-12 w-12 text-white" />
+          {/* Collapsible Content */}
+          <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+            isMissionExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {[
+                {
+                  title: 'Vision',
+                  description: 'To be the most trusted healthcare provider, delivering world-class medical services with compassion and excellence.',
+                  icon: Eye,
+                  color: 'bg-hospital-blue',
+                },
+                {
+                  title: 'Mission',
+                  description: 'To provide comprehensive, affordable, and accessible healthcare services while maintaining the highest standards of medical excellence.',
+                  icon: Target,
+                  color: 'bg-hospital-green',
+                },
+                {
+                  title: 'Values',
+                  description: 'Compassion, Integrity, Excellence, Innovation, and Respect guide everything we do in our commitment to exceptional patient care.',
+                  icon: Heart,
+                  color: 'bg-hospital-teal',
+                },
+              ].map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div key={index} className="group">
+                    <div className="bg-white rounded-3xl p-8 shadow-large hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 h-full">
+                      <div className="text-center">
+                        <div className="mb-8 flex justify-center">
+                          <div className={`flex h-24 w-24 items-center justify-center rounded-2xl ${item.color} group-hover:scale-110 transition-transform duration-300 shadow-large`}>
+                            <IconComponent className="h-12 w-12 text-white" />
+                          </div>
                         </div>
-                      </div>
 
-                      <h3 className="mb-6 text-2xl font-bold font-display text-hospital-blue group-hover:text-hospital-green transition-colors duration-300">
-                        {item.title}
-                      </h3>
+                        <h3 className="mb-6 text-2xl font-bold font-display text-hospital-blue group-hover:text-hospital-green transition-colors duration-300">
+                          {item.title}
+                        </h3>
 
-                      <p className="text-gray-600 leading-relaxed">
-                        {item.description}
-                      </p>
+                        <p className="text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
 
-                      {/* Decorative Element */}
-                      <div className="mt-6 flex justify-center">
-                        <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        {/* Decorative Element */}
+                        <div className="mt-6 flex justify-center">
+                          <div className="w-12 h-1 bg-gradient-to-r from-hospital-blue to-hospital-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

@@ -30,7 +30,7 @@ const StickyIcons = () => {
               body: JSON.stringify({
                 message: 'I want to know more about your care services.',
               }),
-            }).catch(() => {});
+            }).catch(() => { });
             // Always open WhatsApp for user experience
             const message = 'I want to know more about your care services.';
             openWhatsAppWithMessage('918977763302', message);
@@ -69,7 +69,7 @@ const StickyIcons = () => {
                 body: JSON.stringify({
                   message: 'I want to know more about your care services.',
                 }),
-              }).catch(() => {});
+              }).catch(() => { });
               // Always open WhatsApp for user experience
               const message = 'I want to know more about your care services.';
               openWhatsAppWithMessage('918977763302', message);

@@ -11,9 +11,9 @@ const HeroBanner = () => {
 
   const slides = [
     {
-      src: '/images/service/ortho.webp',
+      src: '/images/home/examining-patient.jpg',
       alt: 'Knee replacement treatment madhapur',
-      mobile: '/images/service/ortho.webp',
+      mobile: '/images/home/examining-patient.jpg',
       title: 'Advanced Knee Replacement Surgery',
       subtitle: 'Get back to your active lifestyle with our expert orthopedic care',
       cta: 'Book Consultation',

@@ -3,12 +3,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Mail, Award, Users, Clock, Search, Filter, Stethoscope, Heart, Phone } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Award, Users, Clock, Search, Filter, Stethoscope, Heart, Phone, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function DoctorsPage() {
   const [selectedSpecialty, setSelectedSpecialty] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isHeroExpanded, setIsHeroExpanded] = useState(true);
+  
+  // Auto-collapse hero after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHeroExpanded(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
   const doctors = [
     {
       name: 'Dr. M.M. Shareef',
@@ -184,8 +194,8 @@ export default function DoctorsPage() {
         <meta name="description" content="Meet our team of expert doctors and specialists at Shri Sigma Hospitals, Madhapur. Experienced physicians across all medical specialties providing world-class healthcare." />
         <meta name="keywords" content="best doctors Madhapur, specialist doctors Hyderabad, expert physicians, medical specialists, experienced doctors, healthcare professionals Madhapur" />
       </Head>
-      {/* Modern Hero Section */}
-      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green py-20 text-white overflow-hidden">
+      {/* Collapsible Hero Section */}
+      <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -193,68 +203,109 @@ export default function DoctorsPage() {
           }} />
         </div>
         
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Stethoscope className="w-5 h-5 mr-2 text-hospital-yellow" />
-              <span className="text-sm font-semibold">Medical Excellence</span>
-            </div>
-            
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
-              <span className="block">Meet Our Expert</span>
-              <span className="block text-hospital-yellow">Medical Team</span>
-            </h1>
-            
-            <p className="text-xl mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto">
-              Our team of highly qualified specialists are committed to providing 
-              world-class healthcare with compassion and expertise across all medical specialties
-            </p>
-            
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search doctors by name or specialty..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300"
-                />
+        {/* Hero Section - Completely Hidden When Collapsed */}
+        <div className={`transition-all duration-500 overflow-hidden ${
+          isHeroExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="container mx-auto px-4 relative">
+            <div className="py-20">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                  <Stethoscope className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                  <span className="text-xs sm:text-sm font-semibold">Medical Excellence</span>
+                </div>
+                
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6 heading-no-break">
+                  <span className="block">Meet Our Expert</span>
+                  <span className="block text-hospital-yellow">Medical Team</span>
+                </h1>
+                
+                <p className="text-xl opacity-90 leading-relaxed max-w-3xl mx-auto mb-12">
+                  Our team of highly qualified specialists are committed to providing world-class healthcare
+                  <span className="block mt-2">
+                    with compassion and expertise across all medical specialties
+                  </span>
+                </p>
+                
+                <div className="mb-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Users className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">21+ Expert Doctors</h3>
+                      <p className="text-sm opacity-80">Experienced specialists</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Award className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">14+ Specialties</h3>
+                      <p className="text-sm opacity-80">Comprehensive care</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Clock className="w-8 h-8 text-hospital-yellow" />
+                      </div>
+                      <h3 className="font-semibold mb-2">24/7 Available</h3>
+                      <p className="text-sm opacity-80">Emergency care</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Search Bar */}
+                <div className="max-w-2xl mx-auto mb-6">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="text"
+                      placeholder="Search doctors by name or specialty..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Enhanced Stats Section */}
-      <section className="py-16 bg-white -mt-10 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="text-center group">
-                    <div className="mb-6 flex justify-center">
-                      <div className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-${stat.color}/10 group-hover:bg-${stat.color}/20 group-hover:scale-110 transition-all duration-300`}>
-                        <IconComponent className={`h-10 w-10 text-${stat.color}`} />
-                      </div>
-                    </div>
-                    <div className={`text-4xl font-bold font-display text-${stat.color} mb-2 group-hover:scale-110 transition-transform duration-300`}>
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-600 font-medium">{stat.label}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        
+        {/* Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+          <button
+            onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+            className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-white/20"
+          >
+            <span className="text-sm font-medium text-hospital-blue mr-2">
+              {isHeroExpanded ? 'Hide Hero' : 'Show Hero'}
+            </span>
+            {isHeroExpanded ? (
+              <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            )}
+          </button>
         </div>
       </section>
 
+      {/* Top Toggle Button - Visible when hero is collapsed */}
+      {!isHeroExpanded && (
+        <div className="bg-hospital-blue py-3 relative z-20">
+          <div className="container mx-auto px-4 flex justify-center">
+            <button
+              onClick={() => setIsHeroExpanded(true)}
+              className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <span className="text-sm font-medium text-hospital-blue mr-2">Show Hero</span>
+              <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Specialty Filter Section */}
-      <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative z-10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <div className="inline-flex items-center bg-hospital-blue/10 rounded-full px-4 py-2 mb-6">
