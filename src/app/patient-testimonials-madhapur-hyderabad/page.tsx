@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Star, Users, ThumbsUp, Heart, Play, Quote, Award, Stethoscope, Phone, Mail, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function TestimonialsPage() {
+    // ...existing code...
     const [isHeroExpanded, setIsHeroExpanded] = useState(true);
     const [showAllTestimonials, setShowAllTestimonials] = useState(false);
     
@@ -90,7 +91,7 @@ export default function TestimonialsPage() {
                 <link rel="canonical" href="patient-testimonials-madhapur-hyderabad.html" />
             </Head>
 
-            {/* Collapsible Hero Section */}
+            {/* Collapsible Hero Section - Fully Collapsible */}
             <section className="relative bg-gradient-to-br from-hospital-blue via-hospital-blue-dark to-hospital-green text-white overflow-hidden transition-all duration-500">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -99,82 +100,104 @@ export default function TestimonialsPage() {
                     }} />
                 </div>
 
-                <div className="container mx-auto px-4 relative">
-                    <div className={`transition-all duration-500 ${isHeroExpanded ? 'py-12 sm:py-16 lg:py-20' : 'py-8 sm:py-12 lg:py-16'}`}>
-                        <div className="text-center max-w-4xl mx-auto">
-                            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
-                                <Quote className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
-                                <span className="text-xs sm:text-sm font-semibold">Patient Stories</span>
-                            </div>
+                {/* Hero Section - Completely Hidden When Collapsed */}
+                <div className={`transition-all duration-500 overflow-hidden ${
+                    isHeroExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                }`}>
+                    <div className="container mx-auto px-4 relative">
+                        <div className={`transition-all duration-500 ${isHeroExpanded ? 'py-12 sm:py-16 lg:py-20' : 'py-8 sm:py-12 lg:py-16'}`}>
+                            <div className="text-center max-w-4xl mx-auto">
+                                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+                                    <Quote className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-hospital-yellow" />
+                                    <span className="text-xs sm:text-sm font-semibold">Patient Stories</span>
+                                </div>
 
-                            <h1 className={`font-bold font-display mb-4 sm:mb-6 heading-no-break px-2 transition-all duration-500 ${
-                                isHeroExpanded 
-                                    ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' 
-                                    : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
-                            }`}>
-                                <span className="whitespace-nowrap">Patient</span>
-                                <span className="block text-hospital-yellow whitespace-nowrap">Testimonials</span>
-                            </h1>
+                                <h1 className={`font-bold font-display mb-4 sm:mb-6 heading-no-break px-2 transition-all duration-500 ${
+                                    isHeroExpanded 
+                                        ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' 
+                                        : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
+                                }`}>
+                                    <span className="whitespace-nowrap">Patient</span>
+                                    <span className="block text-hospital-yellow whitespace-nowrap">Testimonials</span>
+                                </h1>
 
-                            <p className={`opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-6 transition-all duration-500 ${
-                                isHeroExpanded 
-                                    ? 'text-base sm:text-lg lg:text-xl mb-8 sm:mb-12' 
-                                    : 'text-sm sm:text-base lg:text-lg mb-6 sm:mb-8'
-                            }`}>
-                                Real experiences from our satisfied patients who have received world-class healthcare
-                                {isHeroExpanded && (
-                                    <span className="block mt-2">
-                                        at Shri Sigma Hospitals
-                                    </span>
-                                )}
-                            </p>
+                                <p className={`opacity-90 leading-relaxed max-w-3xl mx-auto px-4 mb-6 transition-all duration-500 ${
+                                    isHeroExpanded 
+                                        ? 'text-base sm:text-lg lg:text-xl mb-8 sm:mb-12' 
+                                        : 'text-sm sm:text-base lg:text-lg mb-6 sm:mb-8'
+                                }`}>
+                                    Real experiences from our satisfied patients who have received world-class healthcare
+                                    {isHeroExpanded && (
+                                        <span className="block mt-2">
+                                            at Shri Sigma Hospitals
+                                        </span>
+                                    )}
+                                </p>
 
-                            {/* Expandable Content */}
-                            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                                isHeroExpanded ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0'
-                            }`}>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                                            <Star className="w-8 h-8 text-hospital-yellow" />
+                                {/* Expandable Content */}
+                                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                                    isHeroExpanded ? 'max-h-96 opacity-100 mb-8' : 'max-h-0 opacity-0'
+                                }`}>
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                                <Star className="w-8 h-8 text-hospital-yellow" />
+                                            </div>
+                                            <h3 className="font-semibold mb-2">4.8/5 Rating</h3>
+                                            <p className="text-sm opacity-80">Patient satisfaction</p>
                                         </div>
-                                        <h3 className="font-semibold mb-2">4.8/5 Rating</h3>
-                                        <p className="text-sm opacity-80">Patient satisfaction</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                                            <Users className="w-8 h-8 text-hospital-yellow" />
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                                <Users className="w-8 h-8 text-hospital-yellow" />
+                                            </div>
+                                            <h3 className="font-semibold mb-2">500+ Reviews</h3>
+                                            <p className="text-sm opacity-80">Happy patients</p>
                                         </div>
-                                        <h3 className="font-semibold mb-2">500+ Reviews</h3>
-                                        <p className="text-sm opacity-80">Happy patients</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                                            <Play className="w-8 h-8 text-hospital-yellow" />
+                                        <div className="text-center">
+                                            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                                <Play className="w-8 h-8 text-hospital-yellow" />
+                                            </div>
+                                            <h3 className="font-semibold mb-2">Video Stories</h3>
+                                            <p className="text-sm opacity-80">Real experiences</p>
                                         </div>
-                                        <h3 className="font-semibold mb-2">Video Stories</h3>
-                                        <p className="text-sm opacity-80">Real experiences</p>
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Expand/Collapse Toggle */}
-                            <button
-                                onClick={() => setIsHeroExpanded(!isHeroExpanded)}
-                                className="group inline-flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
-                            >
-                                <span className="text-sm font-medium mr-2">
-                                    {isHeroExpanded ? 'Show Less' : 'Show More'}
-                                </span>
-                                {isHeroExpanded ? (
-                                    <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-300" />
-                                ) : (
-                                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
-                                )}
-                            </button>
                         </div>
                     </div>
                 </div>
+
+                                {/* Toggle Button - Always Visible */}
+                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+                                        <button
+                                                onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                                                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg border border-white/20"
+                                        >
+                                                <span className="text-sm font-medium text-hospital-blue mr-2">
+                                                        {isHeroExpanded ? 'Hide Hero' : 'Show Hero'}
+                                                </span>
+                                                {isHeroExpanded ? (
+                                                        <ChevronUp className="w-4 h-4 text-hospital-blue group-hover:-translate-y-1 transition-transform duration-300" />
+                                                ) : (
+                                                        <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+                                                )}
+                                        </button>
+                                </div>
+
+                                {/* Top Toggle Button - Visible when hero is collapsed */}
+                                {!isHeroExpanded && (
+                                    <div className="bg-hospital-blue py-3 relative z-20">
+                                        <div className="container mx-auto px-4 flex justify-center">
+                                            <button
+                                                onClick={() => setIsHeroExpanded(true)}
+                                                className="group inline-flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                                            >
+                                                <span className="text-sm font-medium text-hospital-blue mr-2">Show Hero</span>
+                                                <ChevronDown className="w-4 h-4 text-hospital-blue group-hover:translate-y-1 transition-transform duration-300" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
             </section>
 
             {/* Video Testimonials Section */}

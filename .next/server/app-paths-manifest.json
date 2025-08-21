@@ -1,4 +1,7 @@
 {
   "/about-hospital-madhapur-hyderabad/page": "app/about-hospital-madhapur-hyderabad/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/healthcare-blog-hyderabad/page": "app/healthcare-blog-hyderabad/page.js",
+  "/career-opportunities-hyderabad/page": "app/career-opportunities-hyderabad/page.js",
+  "/patient-testimonials-madhapur-hyderabad/page": "app/patient-testimonials-madhapur-hyderabad/page.js"
 }
